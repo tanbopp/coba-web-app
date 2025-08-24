@@ -1,0 +1,255 @@
+/* Framework7 Custom iOS Styling */
+:root {
+    --f7-theme-color: #007AFF;
+    --f7-theme-color-rgb: 0, 122, 255;
+    --f7-theme-color-shade: #0051D5;
+    --f7-theme-color-tint: #5AC8FA;
+    --f7-ios-primary: #007AFF;
+    --f7-ios-primary-shade: #0051D5;
+    --f7-ios-primary-tint: #5AC8FA;
+}
+
+/* Force iOS theme globally */
+.framework7-root {
+    --f7-theme-color: #007AFF;
+}
+
+/* iOS Page Background */
+.ios .page {
+    --f7-page-bg-color: #f2f2f7;
+    background-color: #f2f2f7;
+}
+
+/* iOS Navbar Styling */
+.ios .navbar {
+    --f7-navbar-bg-color: rgba(247, 247, 247, 0.8);
+    --f7-navbar-border-color: rgba(60, 60, 67, 0.29);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 0.5px solid rgba(60, 60, 67, 0.29);
+}
+
+.ios .navbar-large .title-large {
+    --f7-navbar-large-title-font-size: 34px;
+    --f7-navbar-large-title-font-weight: 700;
+    --f7-navbar-large-title-line-height: 1.2;
+}
+
+/* iOS Cards */
+.ios .card {
+    --f7-card-bg-color: #ffffff;
+    --f7-card-border-radius: 12px;
+    --f7-card-margin-horizontal: 16px;
+    --f7-card-margin-vertical: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border: none;
+}
+
+/* iOS Lists */
+.ios .list {
+    --f7-list-bg-color: #ffffff;
+    --f7-list-border-radius: 12px;
+    --f7-list-margin-vertical: 16px;
+    --f7-list-margin-horizontal: 16px;
+    --f7-list-border-color: transparent;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    border: none;
+    overflow: hidden;
+}
+
+.ios .list .item-inner {
+    --f7-list-item-border-color: rgba(60, 60, 67, 0.29);
+    border-bottom: 0.5px solid var(--f7-list-item-border-color);
+}
+
+.ios .list .item-inner:last-child {
+    border-bottom: none;
+}
+
+/* iOS Buttons */
+.ios .button {
+    --f7-button-border-radius: 10px;
+    --f7-button-font-weight: 600;
+    --f7-button-font-size: 17px;
+    min-height: 44px;
+}
+
+.ios .button-fill {
+    --f7-button-fill-bg-color: #007AFF;
+    --f7-button-fill-text-color: #ffffff;
+    --f7-button-fill-pressed-bg-color: #0051D5;
+}
+
+.ios .button-outline {
+    --f7-button-outline-border-color: #007AFF;
+    --f7-button-outline-text-color: #007AFF;
+    --f7-button-outline-pressed-bg-color: rgba(0, 122, 255, 0.1);
+}
+
+/* iOS Toggle Switches */
+.ios .toggle {
+    --f7-toggle-width: 51px;
+    --f7-toggle-height: 31px;
+    --f7-toggle-border-radius: 16px;
+    --f7-toggle-knob-size: 27px;
+    --f7-toggle-active-color: #34C759;
+    --f7-toggle-inactive-color: rgba(120, 120, 128, 0.32);
+}
+
+/* iOS Toolbar/Tabbar */
+.ios .toolbar {
+    --f7-toolbar-bg-color: rgba(247, 247, 247, 0.8);
+    --f7-toolbar-border-color: rgba(60, 60, 67, 0.29);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-top: 0.5px solid var(--f7-toolbar-border-color);
+}
+
+.ios .tabbar {
+    --f7-tabbar-labels-height: 50px;
+    --f7-tabbar-labels-tablet-height: 56px;
+}
+
+.ios .tabbar a.tab-link {
+    --f7-tabbar-link-text-color: #8E8E93;
+    --f7-tabbar-link-active-text-color: #007AFF;
+    --f7-tabbar-link-active-border-color: transparent;
+}
+
+.ios .tabbar-label {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* iOS Icons */
+.ios .f7-icons {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.ios .tabbar .f7-icons {
+    font-size: 24px;
+}
+
+/* iOS Safe Areas */
+.ios.device-ios {
+    --f7-safe-area-top: env(safe-area-inset-top);
+    --f7-safe-area-bottom: env(safe-area-inset-bottom);
+}
+
+.ios .navbar {
+    padding-top: var(--f7-safe-area-top, 0);
+}
+
+.ios .toolbar-bottom {
+    padding-bottom: var(--f7-safe-area-bottom, 0);
+}
+
+/* Dark Mode Support */
+.ios.theme-dark {
+    --f7-page-bg-color: #000000;
+}
+
+.ios.theme-dark .navbar {
+    --f7-navbar-bg-color: rgba(28, 28, 30, 0.8);
+    --f7-navbar-text-color: #ffffff;
+    --f7-navbar-link-color: #007AFF;
+    --f7-navbar-border-color: rgba(84, 84, 88, 0.65);
+}
+
+.ios.theme-dark .card {
+    --f7-card-bg-color: #1C1C1E;
+}
+
+.ios.theme-dark .list {
+    --f7-list-bg-color: #1C1C1E;
+}
+
+.ios.theme-dark .list .item-inner {
+    --f7-list-item-border-color: rgba(84, 84, 88, 0.65);
+    --f7-list-item-text-color: #ffffff;
+}
+
+.ios.theme-dark .toolbar {
+    --f7-toolbar-bg-color: rgba(28, 28, 30, 0.8);
+    --f7-toolbar-border-color: rgba(84, 84, 88, 0.65);
+}
+
+/* Custom Profile Avatar */
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
+}
+
+/* Custom Animations */
+.ios .item-link:active,
+.ios .button:active,
+.ios .tab-link:active {
+    transform: scale(0.98);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hide scrollbars but keep functionality */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+/* Text Selection */
+.navbar, .toolbar, .tabbar {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Responsive for larger screens (iPad) */
+@media (min-width: 768px) {
+    .framework7-root {
+        max-width: 414px;
+        margin: 0 auto;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* iOS Bounce Scroll Effect */
+.ios .page-content {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Enhanced iOS Colors */
+.color-red { color: #FF3B30 !important; }
+.color-green { color: #34C759 !important; }
+.color-blue { color: #007AFF !important; }
+.color-orange { color: #FF9500 !important; }
+.color-gray { color: #8E8E93 !important; }
+
+/* iOS Typography */
+.ios {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', Helvetica, Arial, sans-serif;
+}
+
+/* Better touch targets */
+.ios .item-link,
+.ios .tab-link,
+.ios .button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+/* iOS Status Bar Integration */
+.ios.device-ios.device-fullscreen .navbar {
+    padding-top: 44px;
+}
+
+.ios.device-ios.device-fullscreen .toolbar-bottom {
+    padding-bottom: 34px;
+}

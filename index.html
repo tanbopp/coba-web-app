@@ -1,69 +1,97 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="theme-auto">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Coba Web App</title>
     
     <!-- PWA Meta Tags -->
-    <meta name="description" content="PWA sederhana dengan tampilan mobile untuk GitHub Pages">
+    <meta name="description" content="PWA dengan tampilan iOS native menggunakan Framework7">
     <meta name="theme-color" content="#007AFF">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
     
-    <!-- iOS Specific Meta Tags untuk fullscreen -->
+    <!-- iOS Specific Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Coba Web App">
-    <link rel="apple-touch-icon" sizes="192x192" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiBmaWxsPSIjMDA3QUZGIi8+Cjx0ZXh0IHg9Ijk2IiB5PSIxMDQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkM8L3RleHQ+Cjwvc3ZnPg==">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBmaWxsPSIjMDA3QUZGIiByeD0iNDAiLz4KPHR5eHQgeD0iOTAiIHk9IjExMCIgZm9udC1mYW1pbHk9IlNGIFBybyBEaXNwbGF5LC1hcHBsZS1zeXN0ZW0sc2Fucy1zZXJpZiIgZm9udC1zaXplPSI3MiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkM8L3RleHQ+Cjwvc3ZnPg==">
     
     <!-- Manifest -->
     <link rel="manifest" href="./manifest.json">
     
     <!-- Framework7 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@8.3.3/css/framework7.bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@8.3.3/css/framework7-icons.css">
     
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-auto">
     <!-- App root element -->
     <div id="app">
-        <!-- Views -->
+        <!-- Views container -->
         <div class="views tabs ios-edges">
-            <!-- Your main view/tab -->
+            
+            <!-- Home View/Tab -->
             <div id="view-home" class="view view-main view-init tab tab-active" data-url="/">
-                <!-- Page -->
                 <div class="page" data-name="home">
-                    <!-- Top Navbar -->
-                    <div class="navbar navbar-large">
+                    <!-- Top Navbar with Large Title -->
+                    <div class="navbar navbar-large navbar-transparent">
                         <div class="navbar-bg"></div>
                         <div class="navbar-inner sliding">
-                            <div class="title">Coba Web App</div>
+                            <div class="left"></div>
+                            <div class="title">Beranda</div>
+                            <div class="title-large">
+                                <div class="title-large-text">Coba Web App</div>
+                            </div>
                             <div class="right">
-                                <a href="#" class="link" id="menuBtn">
-                                    <i class="f7-icons">ellipsis_vertical</i>
+                                <a href="#" class="link icon-only" id="menuBtn">
+                                    <i class="f7-icons">ellipsis</i>
                                 </a>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Page content -->
+                    <!-- Scrollable page content -->
                     <div class="page-content">
                         <!-- Welcome Card -->
-                        <div class="block">
-                            <div class="card">
-                                <div class="card-content card-content-padding">
-                                    <h2>Selamat Datang</h2>
-                                    <p>Ini adalah aplikasi web dengan tampilan iOS menggunakan Framework7. Aplikasi ini dapat dipasang di home screen perangkat Anda.</p>
-                                    <p>
-                                        <button class="button button-fill" id="installBtn" style="display: none;">Install Aplikasi</button>
-                                    </p>
+                        <div class="card">
+                            <div class="card-content card-content-padding">
+                                <div class="row">
+                                    <div class="col-20">
+                                        <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%); display: flex; align-items: center; justify-content: center;">
+                                            <i class="f7-icons" style="color: white; font-size: 24px;">house_fill</i>
+                                        </div>
+                                    </div>
+                                    <div class="col-80">
+                                        <h2 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600;">Selamat Datang</h2>
+                                        <p style="margin: 0; color: var(--f7-text-color); opacity: 0.7;">Ini adalah aplikasi web dengan tampilan iOS menggunakan Framework7. Aplikasi ini dapat dipasang di home screen perangkat Anda.</p>
+                                    </div>
                                 </div>
+                                
+                                <div class="row" style="margin-top: 16px;">
+                                    <div class="col-50">
+                                        <button class="button button-outline button-round">Pelajari Lebih</button>
+                                    </div>
+                                    <div class="col-50">
+                                        <button class="button button-fill button-round" onclick="app.toast.create({text: '🎉 Toast notification!', closeTimeout: 2000, position: 'center'}).open()">Tampilkan Toast</button>
+                                    </div>
+                                </div>
+                                
+                                <button class="button button-fill" id="installBtn" style="display: none; margin-top: 16px; width: 100%;">
+                                    <i class="f7-icons" style="margin-right: 8px;">plus_app</i>
+                                    Install Aplikasi
+                                </button>
                             </div>
                         </div>
                         
                         <!-- Features List -->
-                        <div class="block-title">Fitur Aplikasi</div>
-                        <div class="list ios-edges">
+                        <div class="block-title block-title-medium">Fitur Aplikasi</div>
+                        <div class="list list-strong-ios list-dividers-ios inset">
                             <ul>
                                 <li>
                                     <div class="item-content">
@@ -72,50 +100,64 @@
                                         </div>
                                         <div class="item-inner">
                                             <div class="item-title">Tampilan iOS Native</div>
+                                            <div class="item-after">Framework7</div>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="item-content">
                                         <div class="item-media">
-                                            <i class="f7-icons color-green">checkmark_circle_fill</i>
+                                            <i class="f7-icons color-blue">app_badge</i>
                                         </div>
                                         <div class="item-inner">
                                             <div class="item-title">Progressive Web App</div>
+                                            <div class="item-after">PWA</div>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="item-content">
                                         <div class="item-media">
-                                            <i class="f7-icons color-green">checkmark_circle_fill</i>
+                                            <i class="f7-icons color-orange">rectangle_expand_vertical</i>
                                         </div>
                                         <div class="item-inner">
                                             <div class="item-title">Fullscreen di iOS</div>
+                                            <div class="item-after">Immersive</div>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="item-content">
                                         <div class="item-media">
-                                            <i class="f7-icons color-green">checkmark_circle_fill</i>
+                                            <i class="f7-icons color-purple">wifi_slash</i>
                                         </div>
                                         <div class="item-inner">
                                             <div class="item-title">Offline Support</div>
+                                            <div class="item-after">Cache</div>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                         
-                        <!-- Action Buttons -->
-                        <div class="block">
-                            <div class="row">
-                                <div class="col-50">
-                                    <button class="button button-round button-outline">Pelajari Lebih</button>
-                                </div>
-                                <div class="col-50">
-                                    <button class="button button-round button-fill" onclick="app.toast.create({text: 'Toast notification!', closeTimeout: 2000}).open()">Tampilkan Toast</button>
+                        <!-- Status Card -->
+                        <div class="card">
+                            <div class="card-content card-content-padding">
+                                <div class="row">
+                                    <div class="col-50">
+                                        <div style="text-align: center;">
+                                            <i class="f7-icons color-green" style="font-size: 32px;">wifi</i>
+                                            <div style="margin-top: 8px; font-weight: 600;">Status Koneksi</div>
+                                            <div class="badge color-green" style="margin-top: 4px;">Online</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-50">
+                                        <div style="text-align: center;">
+                                            <i class="f7-icons color-blue" style="font-size: 32px;">gear</i>
+                                            <div style="margin-top: 8px; font-weight: 600;">Versi App</div>
+                                            <div class="badge color-blue" style="margin-top: 4px;">v1.0.0</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -123,36 +165,41 @@
                 </div>
             </div>
             
-            <!-- Profile Tab -->
+            <!-- Profile View/Tab -->
             <div id="view-profile" class="view view-init tab" data-url="/profile/">
                 <div class="page" data-name="profile">
                     <!-- Top Navbar -->
-                    <div class="navbar">
+                    <div class="navbar navbar-large navbar-transparent">
                         <div class="navbar-bg"></div>
                         <div class="navbar-inner sliding">
+                            <div class="left"></div>
                             <div class="title">Profil</div>
+                            <div class="title-large">
+                                <div class="title-large-text">Profil</div>
+                            </div>
+                            <div class="right"></div>
                         </div>
                     </div>
                     
                     <!-- Page content -->
                     <div class="page-content">
-                        <!-- Profile Info -->
-                        <div class="block">
-                            <div class="card">
-                                <div class="card-content card-content-padding">
-                                    <div style="text-align: center; padding: 20px 0;">
-                                        <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(45deg, #007AFF, #5AC8FA); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-                                            <i class="f7-icons" style="font-size: 40px; color: white;">person_fill</i>
-                                        </div>
-                                        <h3>Pengguna Demo</h3>
-                                        <p class="text-color-gray">demo@example.com</p>
+                        <!-- Profile Card -->
+                        <div class="card">
+                            <div class="card-content card-content-padding">
+                                <div style="text-align: center; padding: 20px 0;">
+                                    <div class="profile-avatar">
+                                        <i class="f7-icons" style="font-size: 40px; color: white;">person_fill</i>
                                     </div>
+                                    <h2 style="margin: 0 0 4px 0; font-size: 24px; font-weight: 600;">Pengguna Demo</h2>
+                                    <p style="margin: 0; color: var(--f7-text-color); opacity: 0.7; font-size: 16px;">demo@example.com</p>
+                                    <div class="badge color-green" style="margin-top: 12px;">Aktif</div>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Settings List -->
-                        <div class="list ios-edges">
+                        <div class="block-title block-title-medium">Pengaturan</div>
+                        <div class="list list-strong-ios list-dividers-ios inset">
                             <ul>
                                 <li>
                                     <div class="item-content">
@@ -162,7 +209,7 @@
                                         <div class="item-inner">
                                             <div class="item-title">Notifikasi</div>
                                             <div class="item-after">
-                                                <label class="toggle toggle-init">
+                                                <label class="toggle toggle-init color-green">
                                                     <input type="checkbox" checked>
                                                     <span class="toggle-icon"></span>
                                                 </label>
@@ -178,7 +225,7 @@
                                         <div class="item-inner">
                                             <div class="item-title">Mode Gelap</div>
                                             <div class="item-after">
-                                                <label class="toggle toggle-init">
+                                                <label class="toggle toggle-init color-blue">
                                                     <input type="checkbox" id="darkModeToggle">
                                                     <span class="toggle-icon"></span>
                                                 </label>
@@ -222,22 +269,27 @@
                 </div>
             </div>
             
-            <!-- Settings Tab -->
+            <!-- Settings View/Tab -->
             <div id="view-settings" class="view view-init tab" data-url="/settings/">
                 <div class="page" data-name="settings">
                     <!-- Top Navbar -->
-                    <div class="navbar">
+                    <div class="navbar navbar-large navbar-transparent">
                         <div class="navbar-bg"></div>
                         <div class="navbar-inner sliding">
+                            <div class="left"></div>
                             <div class="title">Pengaturan</div>
+                            <div class="title-large">
+                                <div class="title-large-text">Pengaturan</div>
+                            </div>
+                            <div class="right"></div>
                         </div>
                     </div>
                     
                     <!-- Page content -->
                     <div class="page-content">
-                        <!-- Settings Sections -->
-                        <div class="block-title">Aplikasi</div>
-                        <div class="list ios-edges">
+                        <!-- App Settings -->
+                        <div class="block-title block-title-medium">Aplikasi</div>
+                        <div class="list list-strong-ios list-dividers-ios inset">
                             <ul>
                                 <li>
                                     <a href="#" class="item-link">
@@ -274,7 +326,7 @@
                                     <a href="#" class="item-link">
                                         <div class="item-content">
                                             <div class="item-media">
-                                                <i class="f7-icons">cloud</i>
+                                                <i class="f7-icons">icloud</i>
                                             </div>
                                             <div class="item-inner">
                                                 <div class="item-title">Sinkronisasi</div>
@@ -288,8 +340,9 @@
                             </ul>
                         </div>
                         
-                        <div class="block-title">Tentang</div>
-                        <div class="list ios-edges">
+                        <!-- About Section -->
+                        <div class="block-title block-title-medium">Tentang</div>
+                        <div class="list list-strong-ios list-dividers-ios inset">
                             <ul>
                                 <li>
                                     <div class="item-content">
@@ -308,7 +361,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="#" class="item-link external" target="_blank">
+                                    <a href="https://framework7.io/" class="item-link external" target="_blank">
                                         <div class="item-content">
                                             <div class="item-media">
                                                 <i class="f7-icons">info_circle</i>
@@ -316,7 +369,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title">Dokumentasi</div>
                                                 <div class="item-after">
-                                                    <i class="f7-icons">chevron_right</i>
+                                                    <i class="f7-icons">arrow_up_right_square</i>
                                                 </div>
                                             </div>
                                         </div>
@@ -326,11 +379,11 @@
                         </div>
                         
                         <!-- Danger Zone -->
-                        <div class="block-title">Zona Bahaya</div>
-                        <div class="list ios-edges">
+                        <div class="block-title block-title-medium">Zona Bahaya</div>
+                        <div class="list list-strong-ios list-dividers-ios inset">
                             <ul>
                                 <li>
-                                    <a href="#" class="item-link" onclick="app.dialog.confirm('Yakin ingin reset semua data?', 'Reset Data', function() { app.toast.create({text: 'Data direset!', closeTimeout: 2000}).open(); })">
+                                    <a href="#" class="item-link" onclick="app.dialog.confirm('Yakin ingin reset semua data?', 'Reset Data', function() { app.toast.create({text: '✅ Data direset!', closeTimeout: 2000, position: 'center'}).open(); })">
                                         <div class="item-content">
                                             <div class="item-media">
                                                 <i class="f7-icons color-red">trash</i>
@@ -353,7 +406,7 @@
             <div class="toolbar-inner">
                 <a href="#view-home" class="tab-link tab-link-active">
                     <i class="f7-icons">house_fill</i>
-                    <span class="tabbar-label">Home</span>
+                    <span class="tabbar-label">Beranda</span>
                 </a>
                 <a href="#view-profile" class="tab-link">
                     <i class="f7-icons">person_fill</i>
