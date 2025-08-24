@@ -1,15 +1,18 @@
-// Service Worker for Mobile App PWA
-const CACHE_NAME = 'mobile-app-v1.0.0';
+// Service Worker for Coba Web App PWA (GitHub Pages Compatible)
+const CACHE_NAME = 'coba-web-app-v1.0.0';
 const STATIC_CACHE = 'static-v1';
 const DYNAMIC_CACHE = 'dynamic-v1';
 
+// Base path for GitHub Pages
+const BASE_PATH = '/coba-web-app';
+
 // Files to cache for offline functionality
 const STATIC_FILES = [
-    '/',
-    '/index.html',
-    '/style.css',
-    '/app.js',
-    '/manifest.json'
+    `${BASE_PATH}/`,
+    `${BASE_PATH}/index.html`,
+    `${BASE_PATH}/style.css`,
+    `${BASE_PATH}/app.js`,
+    `${BASE_PATH}/manifest.json`
 ];
 
 // Install event - cache static files
@@ -69,10 +72,10 @@ self.addEventListener('fetch', event => {
     }
     
     // Handle different types of requests
-    if (STATIC_FILES.includes(url.pathname) || url.pathname === '/') {
+    if (STATIC_FILES.includes(url.pathname) || url.pathname === BASE_PATH || url.pathname === `${BASE_PATH}/`) {
         // Static files - Cache First strategy
         event.respondWith(cacheFirst(request));
-    } else if (url.pathname.startsWith('/api/')) {
+    } else if (url.pathname.startsWith(`${BASE_PATH}/api/`)) {
         // API requests - Network First strategy
         event.respondWith(networkFirst(request));
     } else {
@@ -102,7 +105,7 @@ async function cacheFirst(request) {
         
         // Return fallback page for navigation requests
         if (request.destination === 'document') {
-            return caches.match('/index.html');
+            return caches.match(`${BASE_PATH}/index.html`);
         }
         
         throw error;
@@ -132,7 +135,7 @@ async function networkFirst(request) {
         return new Response(
             JSON.stringify({
                 error: 'Offline',
-                message: 'Aplikasi sedang offline'
+                message: 'Coba Web App sedang offline'
             }),
             {
                 status: 503,
@@ -196,7 +199,7 @@ async function syncPendingAnalytics() {
         try {
             // Send analytics to server
             for (const event of pendingAnalytics) {
-                await fetch('/api/analytics', {
+                await fetch(`${BASE_PATH}/api/analytics`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -219,9 +222,9 @@ self.addEventListener('push', event => {
     console.log('🔔 Service Worker: Push received');
     
     const options = {
-        body: 'Ada update baru di aplikasi!',
-        icon: '/icon-192x192.png',
-        badge: '/badge-72x72.png',
+        body: 'Ada update baru di Coba Web App!',
+        icon: `${BASE_PATH}/icon-192x192.png`,
+        badge: `${BASE_PATH}/badge-72x72.png`,
         tag: 'app-notification',
         requireInteraction: false,
         actions: [
@@ -240,14 +243,14 @@ self.addEventListener('push', event => {
         try {
             const data = event.data.json();
             options.body = data.body || options.body;
-            options.title = data.title || 'Mobile App';
+            options.title = data.title || 'Coba Web App';
         } catch (error) {
             console.error('❌ Service Worker: Error parsing push data:', error);
         }
     }
     
     event.waitUntil(
-        self.registration.showNotification('Mobile App', options)
+        self.registration.showNotification('Coba Web App', options)
     );
 });
 
@@ -259,7 +262,7 @@ self.addEventListener('notificationclick', event => {
     
     if (event.action === 'open') {
         event.waitUntil(
-            clients.openWindow('/')
+            clients.openWindow(`${BASE_PATH}/`)
         );
     } else if (event.action === 'dismiss') {
         // Just close the notification
@@ -271,7 +274,7 @@ self.addEventListener('notificationclick', event => {
                 if (clientList.length > 0) {
                     return clientList[0].focus();
                 }
-                return clients.openWindow('/');
+                return clients.openWindow(`${BASE_PATH}/`);
             })
         );
     }
@@ -359,10 +362,10 @@ async function syncContent() {
         // Implement periodic content sync here
         // For example: update cache with latest content
         
-        const response = await fetch('/api/content/latest');
+        const response = await fetch(`${BASE_PATH}/api/content/latest`);
         if (response.ok) {
             const cache = await caches.open(DYNAMIC_CACHE);
-            cache.put('/api/content/latest', response.clone());
+            cache.put(`${BASE_PATH}/api/content/latest`, response.clone());
         }
         
         console.log('✅ Service Worker: Content sync completed');

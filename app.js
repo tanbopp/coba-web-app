@@ -31,7 +31,7 @@ function initializeApp() {
     
     // Show welcome toast
     setTimeout(() => {
-        showToast('Selamat datang di Mobile App!');
+        showToast('Selamat datang di Coba Web App!');
     }, 1000);
 }
 
