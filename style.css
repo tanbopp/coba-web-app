@@ -1,0 +1,36 @@
+/* Main Style for iOS Settings App */
+@import url('ios-enhance.css');
+@import url('ios-settings-enhanced.css');
+
+/* Base iOS Styling */
+:root {
+    --ios-blue: #007AFF;
+    --ios-green: #34c759;
+    --ios-red: #ff3b30;
+    --ios-orange: #ff9500;
+    --ios-gray-1: #f2f2f7;
+    --ios-gray-2: #e5e5ea;
+    --ios-gray-3: #c7c7cc;
+    --ios-text-primary: #000;
+    --ios-text-secondary: rgba(60, 60, 67, 0.6);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--ios-gray-1);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* iOS Dark Mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ios-gray-1: #000;
+        --ios-gray-2: #1c1c1e;
+        --ios-gray-3: #2c2c2e;
+        --ios-text-primary: #fff;
+        --ios-text-secondary: rgba(235, 235, 245, 0.6);
+    }
+}
