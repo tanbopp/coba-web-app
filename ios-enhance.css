@@ -1,0 +1,97 @@
+/* Additional iOS Enhancements */
+
+/* Force iOS appearance on all browsers */
+html, body {
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* iOS Status Bar Height */
+.ios.device-ios .navbar {
+    padding-top: 44px !important;
+}
+
+.ios.device-ios.device-fullscreen .navbar {
+    padding-top: 44px !important;
+}
+
+/* iOS Home Indicator */
+.ios.device-ios .tabbar {
+    padding-bottom: 34px !important;
+}
+
+/* iOS Haptic Feedback Simulation */
+.item-link, .button, .tab-link {
+    -webkit-tap-highlight-color: transparent !important;
+    tap-highlight-color: transparent !important;
+}
+
+/* iOS Smooth Scrolling */
+.page-content {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-scrolling: touch !important;
+}
+
+/* iOS Text Rendering */
+* {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+}
+
+/* iOS Edge Swipe */
+.view {
+    -webkit-user-select: none !important;
+    user-select: none !important;
+}
+
+/* iOS Color Scheme Support */
+@media (prefers-color-scheme: dark) {
+    .theme-auto {
+        --f7-page-bg-color: #000000 !important;
+    }
+}
+
+/* Force iOS specific styling */
+.framework7-root.ios {
+    --f7-safe-area-top: env(safe-area-inset-top) !important;
+    --f7-safe-area-bottom: env(safe-area-inset-bottom) !important;
+    --f7-safe-area-left: env(safe-area-inset-left) !important;
+    --f7-safe-area-right: env(safe-area-inset-right) !important;
+}
+
+/* iOS Spring Animation */
+@keyframes iosSpring {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.button:active, .item-link:active {
+    animation: iosSpring 0.15s ease-out !important;
+}
+
+/* iOS Notification Style */
+.toast {
+    border-radius: 12px !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+}
+
+/* iOS Dialog Style */
+.dialog {
+    border-radius: 14px !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+}
+
+/* iOS Action Sheet Style */
+.actions-modal {
+    border-radius: 14px 14px 0 0 !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+}

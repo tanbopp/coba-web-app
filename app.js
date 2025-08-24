@@ -1,4 +1,14 @@
 // Framework7 App with iOS Native Feel
+console.log('🚀 Starting Framework7 iOS App...');
+
+// Force iOS detection and classes
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+             (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+// Add iOS classes immediately
+document.documentElement.classList.add('ios', 'framework7-root');
+document.body.classList.add('framework7-root');
+
 var app = new Framework7({
     // App root element
     root: '#app',
@@ -72,6 +82,21 @@ var app = new Framework7({
         externalLinks: '.external'
     }
 });
+
+console.log('✅ Framework7 app created successfully');
+
+// Force add classes after app initialization
+setTimeout(() => {
+    document.documentElement.classList.add('ios', 'framework7-root');
+    document.body.classList.add('framework7-root');
+    
+    // Add device classes
+    if (isIOS) {
+        document.documentElement.classList.add('device-ios');
+    }
+    
+    console.log('📱 iOS classes applied');
+}, 100);
 
 // Main view
 var mainView = app.views.create('.view-main');
