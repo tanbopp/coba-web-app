@@ -1,430 +1,719 @@
 <!DOCTYPE html>
-<html lang="id" class="ios framework7-root">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Coba Web App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Settings - iOS Style</title>
     
-    <!-- PWA Meta Tags -->
-    <meta name="description" content="PWA dengan tampilan iOS native menggunakan Framework7">
-    <meta name="theme-color" content="#007AFF">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
     
-    <!-- iOS Specific Meta Tags -->
+    <!-- iOS Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Coba Web App">
+    <meta name="apple-mobile-web-app-title" content="Settings">
     <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
     
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBmaWxsPSIjMDA3QUZGIiByeD0iNDAiLz4KPHR5eHQgeD0iOTAiIHk9IjExMCIgZm9udC1mYW1pbHk9IlNGIFBybyBEaXNwbGF5LC1hcHBsZS1zeXN0ZW0sc2Fucy1zZXJpZiIgZm9udC1zaXplPSI3MiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkM8L3RleHQ+Cjwvc3ZnPg==">
+    <!-- Onsen UI CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.css">
     
-    <!-- Manifest -->
-    <link rel="manifest" href="./manifest.json">
-    
-    <!-- Framework7 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@8.3.3/css/framework7.bundle.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@8.3.3/css/framework7-icons.css">
-    
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Custom iOS Enhancement CSS -->
     <link rel="stylesheet" href="ios-enhance.css">
-</head>
-<body class="ios framework7-root">
-    <!-- App root element -->
-    <div id="app" class="framework7-root">
-        <!-- Views container -->
-        <div class="views tabs ios-edges">
-            
-            <!-- Home View/Tab -->
-            <div id="view-home" class="view view-main view-init tab tab-active" data-url="/">
-                <div class="page" data-name="home">
-                    <!-- Top Navbar with Large Title -->
-                    <div class="navbar navbar-large navbar-transparent">
-                        <div class="navbar-bg"></div>
-                        <div class="navbar-inner sliding">
-                            <div class="left"></div>
-                            <div class="title">Beranda</div>
-                            <div class="title-large">
-                                <div class="title-large-text">Coba Web App</div>
-                            </div>
-                            <div class="right">
-                                <a href="#" class="link icon-only" id="menuBtn">
-                                    <i class="f7-icons">ellipsis</i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Scrollable page content -->
-                    <div class="page-content">
-                        <!-- Welcome Card -->
-                        <div class="card">
-                            <div class="card-content card-content-padding">
-                                <div class="row">
-                                    <div class="col-20">
-                                        <div style="width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%); display: flex; align-items: center; justify-content: center;">
-                                            <i class="f7-icons" style="color: white; font-size: 24px;">house_fill</i>
-                                        </div>
-                                    </div>
-                                    <div class="col-80">
-                                        <h2 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600;">Selamat Datang</h2>
-                                        <p style="margin: 0; color: var(--f7-text-color); opacity: 0.7;">Ini adalah aplikasi web dengan tampilan iOS menggunakan Framework7. Aplikasi ini dapat dipasang di home screen perangkat Anda.</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="row" style="margin-top: 16px;">
-                                    <div class="col-50">
-                                        <button class="button button-outline button-round">Pelajari Lebih</button>
-                                    </div>
-                                    <div class="col-50">
-                                        <button class="button button-fill button-round" onclick="app.toast.create({text: '🎉 Toast notification!', closeTimeout: 2000, position: 'center'}).open()">Tampilkan Toast</button>
-                                    </div>
-                                </div>
-                                
-                                <button class="button button-fill" id="installBtn" style="display: none; margin-top: 16px; width: 100%;">
-                                    <i class="f7-icons" style="margin-right: 8px;">plus_app</i>
-                                    Install Aplikasi
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Features List -->
-                        <div class="block-title block-title-medium">Fitur Aplikasi</div>
-                        <div class="list list-strong-ios list-dividers-ios inset">
-                            <ul>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-media">
-                                            <i class="f7-icons color-green">checkmark_circle_fill</i>
-                                        </div>
-                                        <div class="item-inner">
-                                            <div class="item-title">Tampilan iOS Native</div>
-                                            <div class="item-after">Framework7</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-media">
-                                            <i class="f7-icons color-blue">app_badge</i>
-                                        </div>
-                                        <div class="item-inner">
-                                            <div class="item-title">Progressive Web App</div>
-                                            <div class="item-after">PWA</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-media">
-                                            <i class="f7-icons color-orange">rectangle_expand_vertical</i>
-                                        </div>
-                                        <div class="item-inner">
-                                            <div class="item-title">Fullscreen di iOS</div>
-                                            <div class="item-after">Immersive</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-media">
-                                            <i class="f7-icons color-purple">wifi_slash</i>
-                                        </div>
-                                        <div class="item-inner">
-                                            <div class="item-title">Offline Support</div>
-                                            <div class="item-after">Cache</div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Status Card -->
-                        <div class="card">
-                            <div class="card-content card-content-padding">
-                                <div class="row">
-                                    <div class="col-50">
-                                        <div style="text-align: center;">
-                                            <i class="f7-icons color-green" style="font-size: 32px;">wifi</i>
-                                            <div style="margin-top: 8px; font-weight: 600;">Status Koneksi</div>
-                                            <div class="badge color-green" style="margin-top: 4px;">Online</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-50">
-                                        <div style="text-align: center;">
-                                            <i class="f7-icons color-blue" style="font-size: 32px;">gear</i>
-                                            <div style="margin-top: 8px; font-weight: 600;">Versi App</div>
-                                            <div class="badge color-blue" style="margin-top: 4px;">v1.0.0</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Profile View/Tab -->
-            <div id="view-profile" class="view view-init tab" data-url="/profile/">
-                <div class="page" data-name="profile">
-                    <!-- Top Navbar -->
-                    <div class="navbar navbar-large navbar-transparent">
-                        <div class="navbar-bg"></div>
-                        <div class="navbar-inner sliding">
-                            <div class="left"></div>
-                            <div class="title">Profil</div>
-                            <div class="title-large">
-                                <div class="title-large-text">Profil</div>
-                            </div>
-                            <div class="right"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Page content -->
-                    <div class="page-content">
-                        <!-- Profile Card -->
-                        <div class="card">
-                            <div class="card-content card-content-padding">
-                                <div style="text-align: center; padding: 20px 0;">
-                                    <div class="profile-avatar">
-                                        <i class="f7-icons" style="font-size: 40px; color: white;">person_fill</i>
-                                    </div>
-                                    <h2 style="margin: 0 0 4px 0; font-size: 24px; font-weight: 600;">Pengguna Demo</h2>
-                                    <p style="margin: 0; color: var(--f7-text-color); opacity: 0.7; font-size: 16px;">demo@example.com</p>
-                                    <div class="badge color-green" style="margin-top: 12px;">Aktif</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Settings List -->
-                        <div class="block-title block-title-medium">Pengaturan</div>
-                        <div class="list list-strong-ios list-dividers-ios inset">
-                            <ul>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-media">
-                                            <i class="f7-icons">bell</i>
-                                        </div>
-                                        <div class="item-inner">
-                                            <div class="item-title">Notifikasi</div>
-                                            <div class="item-after">
-                                                <label class="toggle toggle-init color-green">
-                                                    <input type="checkbox" checked>
-                                                    <span class="toggle-icon"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-media">
-                                            <i class="f7-icons">moon</i>
-                                        </div>
-                                        <div class="item-inner">
-                                            <div class="item-title">Mode Gelap</div>
-                                            <div class="item-after">
-                                                <label class="toggle toggle-init color-blue">
-                                                    <input type="checkbox" id="darkModeToggle">
-                                                    <span class="toggle-icon"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#" class="item-link">
-                                        <div class="item-content">
-                                            <div class="item-media">
-                                                <i class="f7-icons">person_circle</i>
-                                            </div>
-                                            <div class="item-inner">
-                                                <div class="item-title">Edit Profil</div>
-                                                <div class="item-after">
-                                                    <i class="f7-icons">chevron_right</i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="item-link">
-                                        <div class="item-content">
-                                            <div class="item-media">
-                                                <i class="f7-icons">lock</i>
-                                            </div>
-                                            <div class="item-inner">
-                                                <div class="item-title">Keamanan</div>
-                                                <div class="item-after">
-                                                    <i class="f7-icons">chevron_right</i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Settings View/Tab -->
-            <div id="view-settings" class="view view-init tab" data-url="/settings/">
-                <div class="page" data-name="settings">
-                    <!-- Top Navbar -->
-                    <div class="navbar navbar-large navbar-transparent">
-                        <div class="navbar-bg"></div>
-                        <div class="navbar-inner sliding">
-                            <div class="left"></div>
-                            <div class="title">Pengaturan</div>
-                            <div class="title-large">
-                                <div class="title-large-text">Pengaturan</div>
-                            </div>
-                            <div class="right"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Page content -->
-                    <div class="page-content">
-                        <!-- App Settings -->
-                        <div class="block-title block-title-medium">Aplikasi</div>
-                        <div class="list list-strong-ios list-dividers-ios inset">
-                            <ul>
-                                <li>
-                                    <a href="#" class="item-link">
-                                        <div class="item-content">
-                                            <div class="item-media">
-                                                <i class="f7-icons">gear</i>
-                                            </div>
-                                            <div class="item-inner">
-                                                <div class="item-title">Pengaturan Umum</div>
-                                                <div class="item-after">
-                                                    <i class="f7-icons">chevron_right</i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="item-link">
-                                        <div class="item-content">
-                                            <div class="item-media">
-                                                <i class="f7-icons">wifi</i>
-                                            </div>
-                                            <div class="item-inner">
-                                                <div class="item-title">Koneksi</div>
-                                                <div class="item-after">
-                                                    <span class="badge color-green">Online</span>
-                                                    <i class="f7-icons">chevron_right</i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="item-link">
-                                        <div class="item-content">
-                                            <div class="item-media">
-                                                <i class="f7-icons">icloud</i>
-                                            </div>
-                                            <div class="item-inner">
-                                                <div class="item-title">Sinkronisasi</div>
-                                                <div class="item-after">
-                                                    <i class="f7-icons">chevron_right</i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <!-- About Section -->
-                        <div class="block-title block-title-medium">Tentang</div>
-                        <div class="list list-strong-ios list-dividers-ios inset">
-                            <ul>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-inner">
-                                            <div class="item-title">Versi</div>
-                                            <div class="item-after">1.0.0</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-inner">
-                                            <div class="item-title">Framework</div>
-                                            <div class="item-after">Framework7</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="https://framework7.io/" class="item-link external" target="_blank">
-                                        <div class="item-content">
-                                            <div class="item-media">
-                                                <i class="f7-icons">info_circle</i>
-                                            </div>
-                                            <div class="item-inner">
-                                                <div class="item-title">Dokumentasi</div>
-                                                <div class="item-after">
-                                                    <i class="f7-icons">arrow_up_right_square</i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Danger Zone -->
-                        <div class="block-title block-title-medium">Zona Bahaya</div>
-                        <div class="list list-strong-ios list-dividers-ios inset">
-                            <ul>
-                                <li>
-                                    <a href="#" class="item-link" onclick="app.dialog.confirm('Yakin ingin reset semua data?', 'Reset Data', function() { app.toast.create({text: '✅ Data direset!', closeTimeout: 2000, position: 'center'}).open(); })">
-                                        <div class="item-content">
-                                            <div class="item-media">
-                                                <i class="f7-icons color-red">trash</i>
-                                            </div>
-                                            <div class="item-inner">
-                                                <div class="item-title color-red">Reset Data</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Bottom Tabbar -->
-        <div class="toolbar tabbar tabbar-labels toolbar-bottom-md">
-            <div class="toolbar-inner">
-                <a href="#view-home" class="tab-link tab-link-active">
-                    <i class="f7-icons">house_fill</i>
-                    <span class="tabbar-label">Beranda</span>
-                </a>
-                <a href="#view-profile" class="tab-link">
-                    <i class="f7-icons">person_fill</i>
-                    <span class="tabbar-label">Profil</span>
-                </a>
-                <a href="#view-settings" class="tab-link">
-                    <i class="f7-icons">gear</i>
-                    <span class="tabbar-label">Pengaturan</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Framework7 Library -->
-    <script src="https://cdn.jsdelivr.net/npm/framework7@8.3.3/js/framework7.bundle.min.js"></script>
+    <link rel="stylesheet" href="ios-settings-enhanced.css">
     
-    <!-- Custom App Script -->
+    <style>
+        /* iOS Settings Style Enhancements */
+        :root {
+            --ios-gray-1: #f2f2f7;
+            --ios-gray-2: #e5e5ea;
+            --ios-gray-3: #c7c7cc;
+            --ios-gray-4: #d1d1d6;
+            --ios-blue: #007AFF;
+            --ios-green: #34c759;
+            --ios-red: #ff3b30;
+            --ios-orange: #ff9500;
+            --ios-tint: #007AFF;
+        }
+        
+        body {
+            background-color: var(--ios-gray-1) !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif !important;
+        }
+        
+        .page__background {
+            background-color: var(--ios-gray-1) !important;
+        }
+        
+        /* Custom iOS-style toolbar */
+        .toolbar {
+            background-color: rgba(248, 248, 248, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border-bottom: 0.5px solid var(--ios-gray-3) !important;
+        }
+        
+        .toolbar .center {
+            font-weight: 600 !important;
+            font-size: 17px !important;
+            color: #000 !important;
+        }
+        
+        /* iOS-style list items */
+        .list-item {
+            background-color: #fff !important;
+            border-bottom: 0.5px solid var(--ios-gray-2) !important;
+            min-height: 44px !important;
+            padding: 12px 16px !important;
+        }
+        
+        .list-item:active {
+            background-color: var(--ios-gray-2) !important;
+        }
+        
+        .list-item__center {
+            font-size: 17px !important;
+            color: #000 !important;
+        }
+        
+        .list-item__right {
+            color: var(--ios-gray-3) !important;
+            font-size: 15px !important;
+        }
+        
+        .list-item__left {
+            margin-right: 12px !important;
+        }
+        
+        /* iOS-style icons */
+        .settings-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .icon-airplane { background: var(--ios-orange); }
+        .icon-wifi { background: var(--ios-blue); }
+        .icon-bluetooth { background: var(--ios-blue); }
+        .icon-cellular { background: var(--ios-green); }
+        .icon-hotspot { background: var(--ios-green); }
+        .icon-vpn { background: var(--ios-blue); }
+        .icon-notifications { background: var(--ios-red); }
+        .icon-sounds { background: var(--ios-red); }
+        .icon-focus { background: #5856d6; }
+        .icon-screen { background: var(--ios-blue); }
+        .icon-general { background: #8e8e93; }
+        .icon-control { background: #8e8e93; }
+        .icon-display { background: var(--ios-blue); }
+        .icon-accessibility { background: var(--ios-blue); }
+        .icon-privacy { background: var(--ios-blue); }
+        
+        /* iOS-style sections */
+        .list {
+            margin: 20px 0 !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            background-color: #fff !important;
+        }
+        
+        .list:first-child {
+            margin-top: 0 !important;
+        }
+        
+        /* iOS-style switches */
+        .switch {
+            transform: scale(0.8) !important;
+        }
+        
+        .switch__input:checked + .switch__toggle {
+            background-color: var(--ios-green) !important;
+        }
+        
+        /* Profile section */
+        .profile-section {
+            background: linear-gradient(135deg, var(--ios-blue), #5ac8fa) !important;
+            color: white !important;
+            padding: 20px 16px !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
+        }
+        
+        .profile-section .list-item {
+            background: transparent !important;
+            border-bottom: none !important;
+            padding: 8px 0 !important;
+        }
+        
+        .profile-section .list-item__center {
+            color: white !important;
+            font-weight: 600 !important;
+            font-size: 18px !important;
+        }
+        
+        .profile-section .list-item__right {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+        
+        .profile-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+            margin-right: 12px;
+        }
+        
+        /* Search bar */
+        .search-container {
+            padding: 8px 16px;
+            background-color: var(--ios-gray-1);
+        }
+        
+        .search-input {
+            background-color: rgba(118, 118, 128, 0.12) !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 8px 12px !important;
+            font-size: 16px !important;
+            color: #000 !important;
+        }
+        
+        .search-input::placeholder {
+            color: rgba(60, 60, 67, 0.6) !important;
+        }
+        
+        /* Haptic feedback animation */
+        @keyframes tapFeedback {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        
+        .list-item.tap-active {
+            animation: tapFeedback 0.1s ease-out;
+        }
+        
+        /* iOS-style navigation animation */
+        .page {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <ons-navigator id="navigator">
+        <ons-page id="main-page">
+            <ons-toolbar>
+                <div class="center">Settings</div>
+            </ons-toolbar>
+            
+            <div class="page__content">
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search" id="searchInput">
+                </div>
+                
+                <!-- Profile Section -->
+                <ons-list class="profile-section">
+                    <ons-list-item tappable onclick="showProfile()">
+                        <div class="left">
+                            <div class="profile-avatar">JD</div>
+                        </div>
+                        <div class="center">
+                            <div>John Doe</div>
+                            <div style="font-size: 14px; font-weight: 400; margin-top: 2px; opacity: 0.8;">Apple ID, iCloud, Media & Purchases</div>
+                        </div>
+                        <div class="right">
+                            <ons-icon icon="fa-chevron-right" style="color: rgba(255,255,255,0.7);"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+                
+                <!-- Main Settings -->
+                <ons-list>
+                    <ons-list-item tappable onclick="showDetail('Airplane Mode')">
+                        <div class="left">
+                            <div class="settings-icon icon-airplane">
+                                <ons-icon icon="fa-plane"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Airplane Mode</div>
+                        <div class="right">
+                            <ons-switch id="airplaneSwitch"></ons-switch>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('Wi-Fi')">
+                        <div class="left">
+                            <div class="settings-icon icon-wifi">
+                                <ons-icon icon="fa-wifi"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Wi-Fi</div>
+                        <div class="right">
+                            <span style="color: #8e8e93;">MyNetwork</span>
+                            <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('Bluetooth')">
+                        <div class="left">
+                            <div class="settings-icon icon-bluetooth">
+                                <ons-icon icon="fa-bluetooth"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Bluetooth</div>
+                        <div class="right">
+                            <span style="color: #8e8e93;">On</span>
+                            <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('Cellular')">
+                        <div class="left">
+                            <div class="settings-icon icon-cellular">
+                                <ons-icon icon="fa-signal"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Cellular</div>
+                        <div class="right">
+                            <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('Personal Hotspot')">
+                        <div class="left">
+                            <div class="settings-icon icon-hotspot">
+                                <ons-icon icon="fa-link"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Personal Hotspot</div>
+                        <div class="right">
+                            <span style="color: #8e8e93;">Off</span>
+                            <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('VPN')">
+                        <div class="left">
+                            <div class="settings-icon icon-vpn">
+                                <ons-icon icon="fa-shield"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">VPN</div>
+                        <div class="right">
+                            <span style="color: #8e8e93;">Not Connected</span>
+                            <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+                
+                <!-- Notifications & Sounds -->
+                <ons-list>
+                    <ons-list-item tappable onclick="showDetail('Notifications')">
+                        <div class="left">
+                            <div class="settings-icon icon-notifications">
+                                <ons-icon icon="fa-bell"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Notifications</div>
+                        <div class="right">
+                            <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('Sounds & Haptics')">
+                        <div class="left">
+                            <div class="settings-icon icon-sounds">
+                                <ons-icon icon="fa-volume-up"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Sounds & Haptics</div>
+                        <div class="right">
+                            <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('Focus')">
+                        <div class="left">
+                            <div class="settings-icon icon-focus">
+                                <ons-icon icon="fa-moon"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Focus</div>
+                        <div class="right">
+                            <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('Screen Time')">
+                        <div class="left">
+                            <div class="settings-icon icon-screen">
+                                <ons-icon icon="fa-clock"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Screen Time</div>
+                        <div class="right">
+                            <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+                
+                <!-- General Settings -->
+                <ons-list>
+                    <ons-list-item tappable onclick="showDetail('General')">
+                        <div class="left">
+                            <div class="settings-icon icon-general">
+                                <ons-icon icon="fa-cog"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">General</div>
+                        <div class="right">
+                            <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('Control Center')">
+                        <div class="left">
+                            <div class="settings-icon icon-control">
+                                <ons-icon icon="fa-th-large"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Control Center</div>
+                        <div class="right">
+                            <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('Display & Brightness')">
+                        <div class="left">
+                            <div class="settings-icon icon-display">
+                                <ons-icon icon="fa-sun"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Display & Brightness</div>
+                        <div class="right">
+                            <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('Accessibility')">
+                        <div class="left">
+                            <div class="settings-icon icon-accessibility">
+                                <ons-icon icon="fa-universal-access"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Accessibility</div>
+                        <div class="right">
+                            <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable onclick="showDetail('Privacy & Security')">
+                        <div class="left">
+                            <div class="settings-icon icon-privacy">
+                                <ons-icon icon="fa-lock"></ons-icon>
+                            </div>
+                        </div>
+                        <div class="center">Privacy & Security</div>
+                        <div class="right">
+                            <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+                
+                <div style="height: 50px;"></div>
+            </div>
+        </ons-page>
+    </ons-navigator>
+    
+    <!-- Onsen UI JavaScript -->
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    
+    <!-- FontAwesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- Main App Logic -->
     <script src="app.js"></script>
+    
+    <script>
+        // Initialize the app
+        document.addEventListener('init', function(event) {
+            var page = event.target;
+            
+            if (page.id === 'main-page') {
+                // Add search functionality
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.addEventListener('input', function(e) {
+                        filterSettings(e.target.value);
+                    });
+                }
+                
+                // Add haptic feedback to list items
+                const listItems = document.querySelectorAll('ons-list-item[tappable]');
+                listItems.forEach(item => {
+                    item.addEventListener('touchstart', function() {
+                        this.classList.add('tap-active');
+                        // Simulate haptic feedback
+                        if (navigator.vibrate) {
+                            navigator.vibrate(10);
+                        }
+                    });
+                    
+                    item.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            this.classList.remove('tap-active');
+                        }, 100);
+                    });
+                });
+                
+                // Airplane mode switch functionality
+                const airplaneSwitch = document.getElementById('airplaneSwitch');
+                if (airplaneSwitch) {
+                    airplaneSwitch.addEventListener('change', function() {
+                        if (navigator.vibrate) {
+                            navigator.vibrate(15);
+                        }
+                        
+                        if (this.checked) {
+                            ons.notification.toast('Airplane Mode enabled', { timeout: 2000 });
+                        } else {
+                            ons.notification.toast('Airplane Mode disabled', { timeout: 2000 });
+                        }
+                    });
+                }
+            }
+        });
+        
+        // Filter settings based on search
+        function filterSettings(query) {
+            const lists = document.querySelectorAll('ons-list:not(.profile-section)');
+            const searchQuery = query.toLowerCase();
+            
+            lists.forEach(list => {
+                const items = list.querySelectorAll('ons-list-item');
+                let hasVisibleItems = false;
+                
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(searchQuery)) {
+                        item.style.display = '';
+                        hasVisibleItems = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                list.style.display = hasVisibleItems ? '' : 'none';
+            });
+        }
+        
+        // Show detail page
+        function showDetail(title) {
+            const detailPage = createDetailPage(title);
+            document.getElementById('navigator').pushPage(detailPage, {
+                animation: 'slide-ios'
+            });
+        }
+        
+        // Show profile page
+        function showProfile() {
+            const profilePage = createProfilePage();
+            document.getElementById('navigator').pushPage(profilePage, {
+                animation: 'slide-ios'
+            });
+        }
+        
+        // Create detail page
+        function createDetailPage(title) {
+            const page = document.createElement('ons-page');
+            page.innerHTML = `
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-back-button>Settings</ons-back-button>
+                    </div>
+                    <div class="center">${title}</div>
+                </ons-toolbar>
+                
+                <div class="page__content">
+                    <div style="padding: 20px; text-align: center; margin-top: 50px;">
+                        <div style="font-size: 48px; margin-bottom: 20px; opacity: 0.3;">
+                            <ons-icon icon="fa-cog"></ons-icon>
+                        </div>
+                        <h2 style="color: #8e8e93; font-weight: 400; margin: 0;">${title}</h2>
+                        <p style="color: #8e8e93; margin-top: 10px;">
+                            This is a demo of the ${title} settings page. 
+                            In a real app, this would contain the actual settings options.
+                        </p>
+                        
+                        <div style="margin-top: 40px;">
+                            <ons-list>
+                                <ons-list-item>
+                                    <div class="center">Enable ${title}</div>
+                                    <div class="right">
+                                        <ons-switch></ons-switch>
+                                    </div>
+                                </ons-list-item>
+                                
+                                <ons-list-item>
+                                    <div class="center">Auto ${title}</div>
+                                    <div class="right">
+                                        <ons-switch checked></ons-switch>
+                                    </div>
+                                </ons-list-item>
+                            </ons-list>
+                        </div>
+                    </div>
+                </div>
+            `;
+            return page;
+        }
+        
+        // Create profile page
+        function createProfilePage() {
+            const page = document.createElement('ons-page');
+            page.innerHTML = `
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-back-button>Settings</ons-back-button>
+                    </div>
+                    <div class="center">Apple ID</div>
+                </ons-toolbar>
+                
+                <div class="page__content">
+                    <!-- Profile Header -->
+                    <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #007AFF, #5ac8fa); color: white;">
+                        <div style="width: 80px; height: 80px; border-radius: 40px; background: rgba(255,255,255,0.2); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 600;">
+                            JD
+                        </div>
+                        <h2 style="margin: 0; font-weight: 600; font-size: 24px;">John Doe</h2>
+                        <p style="margin: 8px 0 0; opacity: 0.8; font-size: 16px;">john.doe@icloud.com</p>
+                    </div>
+                    
+                    <!-- Profile Options -->
+                    <ons-list style="margin-top: 0;">
+                        <ons-list-item tappable>
+                            <div class="center">Sign-In & Security</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable>
+                            <div class="center">Payment & Shipping</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable>
+                            <div class="center">Subscriptions</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <ons-list>
+                        <ons-list-item tappable>
+                            <div class="center">iCloud</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">5 GB Available</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable>
+                            <div class="center">Media & Purchases</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable>
+                            <div class="center">Find My</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <ons-list>
+                        <ons-list-item tappable style="color: #ff3b30;">
+                            <div class="center" style="color: #ff3b30;">Sign Out</div>
+                        </ons-list-item>
+                    </ons-list>
+                </div>
+            `;
+            return page;
+        }
+        
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+        
+        // Handle iOS viewport
+        function handleiOSViewport() {
+            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+                document.body.classList.add('device-ios');
+                
+                // Handle safe area
+                const metaViewport = document.querySelector('meta[name="viewport"]');
+                if (metaViewport) {
+                    metaViewport.setAttribute('content', 
+                        'width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover'
+                    );
+                }
+            }
+        }
+        
+        // Initialize iOS enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            handleiOSViewport();
+            
+            // Add platform classes
+            document.body.classList.add('ons-ios');
+            
+            // Disable context menu on long press
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+            
+            // Prevent zoom on double tap
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+        });
+    </script>
 </body>
 </html>
