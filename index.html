@@ -634,7 +634,8 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
     <!-- Main App Logic -->
-    <script src="app.js"></script>
+    <!-- Framework7 conflicts with Onsen UI, disable for now -->
+    <!-- <script src="app.js"></script> -->
     
     <script>
         // Initialize the app
@@ -642,6 +643,8 @@
             var page = event.target;
             
             if (page.id === 'main-page') {
+                console.log('✅ Main page initialized');
+                
                 // Add search functionality
                 const searchInput = document.getElementById('searchInput');
                 if (searchInput) {
@@ -686,6 +689,9 @@
             }
         });
         
+        // Make sure these functions are available globally after they're defined
+        // (Will be called in DOMContentLoaded)
+        
         // Filter settings based on search
         function filterSettings(query) {
             const lists = document.querySelectorAll('ons-list:not(.profile-section)');
@@ -711,10 +717,42 @@
         
         // Show detail page
         function showDetail(title) {
-            const detailPage = createDetailPage(title);
-            document.getElementById('navigator').pushPage(detailPage, {
-                animation: 'slide-ios'
-            });
+            console.log('📱 Showing detail for:', title);
+            
+            try {
+                const navigator = document.getElementById('navigator') || document.querySelector('ons-navigator');
+                if (!navigator) {
+                    console.error('❌ Navigator not found');
+                    alert('Navigator error');
+                    return;
+                }
+                
+                console.log('✅ Navigator found:', navigator);
+                
+                const detailPage = createDetailPage(title);
+                console.log('✅ Detail page created for:', title);
+                
+                // Use Onsen UI navigation with iOS-style animation
+                navigator.pushPage(detailPage, {
+                    animation: 'slide-ios',
+                    animationOptions: {
+                        duration: 0.3,
+                        timing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                    }
+                }).then(() => {
+                    console.log('✅ Navigation completed for:', title);
+                    
+                    // Re-setup click listeners for new page
+                    setTimeout(setupClickListeners, 100);
+                }).catch(error => {
+                    console.error('❌ Navigation error:', error);
+                    alert('Navigation failed: ' + error.message);
+                });
+                
+            } catch (error) {
+                console.error('❌ Show detail error:', error);
+                alert('Error: ' + error.message);
+            }
         }
         
         // Show profile page
@@ -2241,6 +2279,8 @@
         
         // Initialize iOS enhancements
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 DOM Content Loaded - Initializing iOS Settings App');
+            
             handleiOSViewport();
             
             // Add platform classes
@@ -2260,7 +2300,39 @@
                 }
                 lastTouchEnd = now;
             }, false);
+            
+            // Ensure all functions are available globally
+            window.showDetail = showDetail;
+            window.showProfile = showProfile;
+            window.filterSettings = filterSettings;
+            window.createDetailPage = createDetailPage;
+            window.createProfilePage = createProfilePage;
+            
+            // Add click event listeners as backup
+            setupClickListeners();
+            
+            console.log('✅ iOS Settings App fully initialized');
         });
+        
+        // Setup click listeners as backup
+        function setupClickListeners() {
+            // Add click listeners to all tappable items
+            document.querySelectorAll('ons-list-item[tappable]').forEach(item => {
+                const onclick = item.getAttribute('onclick');
+                if (onclick && !item.hasClickListener) {
+                    item.hasClickListener = true;
+                    item.addEventListener('click', function(e) {
+                        console.log('🖱️ Click detected on:', onclick);
+                        try {
+                            // Execute the onclick function
+                            eval(onclick);
+                        } catch (error) {
+                            console.error('❌ Error executing onclick:', error);
+                        }
+                    });
+                }
+            });
+        }
     </script>
 </body>
 </html>
