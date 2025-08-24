@@ -2,129 +2,375 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Coba Web App</title>
     
     <!-- PWA Meta Tags -->
     <meta name="description" content="PWA sederhana dengan tampilan mobile untuk GitHub Pages">
-    <meta name="theme-color" content="#4A90E2">
+    <meta name="theme-color" content="#007AFF">
     
     <!-- iOS Specific Meta Tags untuk fullscreen -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Coba Web App">
-    <link rel="apple-touch-icon" sizes="192x192" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiBmaWxsPSIjNEE5MEUyIi8+Cjx0ZXh0IHg9Ijk2IiB5PSIxMDQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkM8L3RleHQ+Cjwvc3ZnPg==">
+    <link rel="apple-touch-icon" sizes="192x192" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiBmaWxsPSIjMDA3QUZGIi8+Cjx0ZXh0IHg9Ijk2IiB5PSIxMDQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkM8L3RleHQ+Cjwvc3ZnPg==">
     
     <!-- Manifest -->
     <link rel="manifest" href="./manifest.json">
     
-    <!-- Stylesheet -->
+    <!-- Framework7 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@8.3.3/css/framework7.bundle.min.css">
+    
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <h1>Coba Web App</h1>
-            <div class="header-actions">
-                <button class="btn-icon" id="menuBtn">☰</button>
+    <!-- App root element -->
+    <div id="app">
+        <!-- Views -->
+        <div class="views tabs ios-edges">
+            <!-- Your main view/tab -->
+            <div id="view-home" class="view view-main view-init tab tab-active" data-url="/">
+                <!-- Page -->
+                <div class="page" data-name="home">
+                    <!-- Top Navbar -->
+                    <div class="navbar navbar-large">
+                        <div class="navbar-bg"></div>
+                        <div class="navbar-inner sliding">
+                            <div class="title">Coba Web App</div>
+                            <div class="right">
+                                <a href="#" class="link" id="menuBtn">
+                                    <i class="f7-icons">ellipsis_vertical</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Page content -->
+                    <div class="page-content">
+                        <!-- Welcome Card -->
+                        <div class="block">
+                            <div class="card">
+                                <div class="card-content card-content-padding">
+                                    <h2>Selamat Datang</h2>
+                                    <p>Ini adalah aplikasi web dengan tampilan iOS menggunakan Framework7. Aplikasi ini dapat dipasang di home screen perangkat Anda.</p>
+                                    <p>
+                                        <button class="button button-fill" id="installBtn" style="display: none;">Install Aplikasi</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Features List -->
+                        <div class="block-title">Fitur Aplikasi</div>
+                        <div class="list ios-edges">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media">
+                                            <i class="f7-icons color-green">checkmark_circle_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title">Tampilan iOS Native</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media">
+                                            <i class="f7-icons color-green">checkmark_circle_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title">Progressive Web App</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media">
+                                            <i class="f7-icons color-green">checkmark_circle_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title">Fullscreen di iOS</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media">
+                                            <i class="f7-icons color-green">checkmark_circle_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title">Offline Support</div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="block">
+                            <div class="row">
+                                <div class="col-50">
+                                    <button class="button button-round button-outline">Pelajari Lebih</button>
+                                </div>
+                                <div class="col-50">
+                                    <button class="button button-round button-fill" onclick="app.toast.create({text: 'Toast notification!', closeTimeout: 2000}).open()">Tampilkan Toast</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Tab -->
+            <div id="view-profile" class="view view-init tab" data-url="/profile/">
+                <div class="page" data-name="profile">
+                    <!-- Top Navbar -->
+                    <div class="navbar">
+                        <div class="navbar-bg"></div>
+                        <div class="navbar-inner sliding">
+                            <div class="title">Profil</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Page content -->
+                    <div class="page-content">
+                        <!-- Profile Info -->
+                        <div class="block">
+                            <div class="card">
+                                <div class="card-content card-content-padding">
+                                    <div style="text-align: center; padding: 20px 0;">
+                                        <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(45deg, #007AFF, #5AC8FA); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                                            <i class="f7-icons" style="font-size: 40px; color: white;">person_fill</i>
+                                        </div>
+                                        <h3>Pengguna Demo</h3>
+                                        <p class="text-color-gray">demo@example.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Settings List -->
+                        <div class="list ios-edges">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media">
+                                            <i class="f7-icons">bell</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title">Notifikasi</div>
+                                            <div class="item-after">
+                                                <label class="toggle toggle-init">
+                                                    <input type="checkbox" checked>
+                                                    <span class="toggle-icon"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-media">
+                                            <i class="f7-icons">moon</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title">Mode Gelap</div>
+                                            <div class="item-after">
+                                                <label class="toggle toggle-init">
+                                                    <input type="checkbox" id="darkModeToggle">
+                                                    <span class="toggle-icon"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#" class="item-link">
+                                        <div class="item-content">
+                                            <div class="item-media">
+                                                <i class="f7-icons">person_circle</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Edit Profil</div>
+                                                <div class="item-after">
+                                                    <i class="f7-icons">chevron_right</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="item-link">
+                                        <div class="item-content">
+                                            <div class="item-media">
+                                                <i class="f7-icons">lock</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Keamanan</div>
+                                                <div class="item-after">
+                                                    <i class="f7-icons">chevron_right</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings Tab -->
+            <div id="view-settings" class="view view-init tab" data-url="/settings/">
+                <div class="page" data-name="settings">
+                    <!-- Top Navbar -->
+                    <div class="navbar">
+                        <div class="navbar-bg"></div>
+                        <div class="navbar-inner sliding">
+                            <div class="title">Pengaturan</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Page content -->
+                    <div class="page-content">
+                        <!-- Settings Sections -->
+                        <div class="block-title">Aplikasi</div>
+                        <div class="list ios-edges">
+                            <ul>
+                                <li>
+                                    <a href="#" class="item-link">
+                                        <div class="item-content">
+                                            <div class="item-media">
+                                                <i class="f7-icons">gear</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Pengaturan Umum</div>
+                                                <div class="item-after">
+                                                    <i class="f7-icons">chevron_right</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="item-link">
+                                        <div class="item-content">
+                                            <div class="item-media">
+                                                <i class="f7-icons">wifi</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Koneksi</div>
+                                                <div class="item-after">
+                                                    <span class="badge color-green">Online</span>
+                                                    <i class="f7-icons">chevron_right</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="item-link">
+                                        <div class="item-content">
+                                            <div class="item-media">
+                                                <i class="f7-icons">cloud</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Sinkronisasi</div>
+                                                <div class="item-after">
+                                                    <i class="f7-icons">chevron_right</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="block-title">Tentang</div>
+                        <div class="list ios-edges">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Versi</div>
+                                            <div class="item-after">1.0.0</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Framework</div>
+                                            <div class="item-after">Framework7</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#" class="item-link external" target="_blank">
+                                        <div class="item-content">
+                                            <div class="item-media">
+                                                <i class="f7-icons">info_circle</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title">Dokumentasi</div>
+                                                <div class="item-after">
+                                                    <i class="f7-icons">chevron_right</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Danger Zone -->
+                        <div class="block-title">Zona Bahaya</div>
+                        <div class="list ios-edges">
+                            <ul>
+                                <li>
+                                    <a href="#" class="item-link" onclick="app.dialog.confirm('Yakin ingin reset semua data?', 'Reset Data', function() { app.toast.create({text: 'Data direset!', closeTimeout: 2000}).open(); })">
+                                        <div class="item-content">
+                                            <div class="item-media">
+                                                <i class="f7-icons color-red">trash</i>
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title color-red">Reset Data</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="content-wrapper">
-            <!-- Home Page -->
-            <section id="home" class="page active">
-                <div class="card">
-                    <h2>Selamat Datang</h2>
-                    <p>Ini adalah aplikasi web sederhana dengan tampilan mobile. Aplikasi ini dapat dipasang di home screen perangkat Anda.</p>
-                    <button class="btn-primary" id="installBtn" style="display: none;">Install Aplikasi</button>
-                </div>
-                
-                <div class="card">
-                    <h3>Fitur Aplikasi</h3>
-                    <ul>
-                        <li>✓ Tampilan mobile-first</li>
-                        <li>✓ Bisa dipasang sebagai PWA</li>
-                        <li>✓ Fullscreen di iOS</li>
-                        <li>✓ Offline support</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Profile Page -->
-            <section id="profile" class="page">
-                <div class="card">
-                    <h2>Profil</h2>
-                    <div class="profile-info">
-                        <div class="avatar">👤</div>
-                        <h3>Pengguna Demo</h3>
-                        <p>Ini adalah halaman profil demo</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h3>Pengaturan</h3>
-                    <div class="setting-item">
-                        <span>Notifikasi</span>
-                        <label class="switch">
-                            <input type="checkbox" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    <div class="setting-item">
-                        <span>Mode Gelap</span>
-                        <label class="switch">
-                            <input type="checkbox" id="darkModeToggle">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Settings Page -->
-            <section id="settings" class="page">
-                <div class="card">
-                    <h2>Pengaturan</h2>
-                    <p>Halaman pengaturan aplikasi</p>
-                </div>
-                
-                <div class="card">
-                    <h3>Tentang Aplikasi</h3>
-                    <p>Versi: 1.0.0</p>
-                    <p>Dibuat dengan HTML, CSS, dan JavaScript</p>
-                    <p>PWA dengan offline support</p>
-                </div>
-            </section>
+        
+        <!-- Bottom Tabbar -->
+        <div class="toolbar tabbar tabbar-labels toolbar-bottom-md">
+            <div class="toolbar-inner">
+                <a href="#view-home" class="tab-link tab-link-active">
+                    <i class="f7-icons">house_fill</i>
+                    <span class="tabbar-label">Home</span>
+                </a>
+                <a href="#view-profile" class="tab-link">
+                    <i class="f7-icons">person_fill</i>
+                    <span class="tabbar-label">Profil</span>
+                </a>
+                <a href="#view-settings" class="tab-link">
+                    <i class="f7-icons">gear</i>
+                    <span class="tabbar-label">Pengaturan</span>
+                </a>
+            </div>
         </div>
-    </main>
-
-    <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
-        <button class="nav-item active" data-page="home">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-label">Home</span>
-        </button>
-        <button class="nav-item" data-page="profile">
-            <span class="nav-icon">👤</span>
-            <span class="nav-label">Profil</span>
-        </button>
-        <button class="nav-item" data-page="settings">
-            <span class="nav-icon">⚙️</span>
-            <span class="nav-label">Settings</span>
-        </button>
-    </nav>
-
-    <!-- Loading Indicator -->
-    <div class="loading" id="loading" style="display: none;">
-        <div class="spinner"></div>
     </div>
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toast"></div>
-
+    <!-- Framework7 Library -->
+    <script src="https://cdn.jsdelivr.net/npm/framework7@8.3.3/js/framework7.bundle.min.js"></script>
+    
+    <!-- Custom App Script -->
     <script src="app.js"></script>
 </body>
 </html>
