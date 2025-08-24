@@ -213,6 +213,191 @@
         ::-webkit-scrollbar {
             display: none;
         }
+        
+        /* Enhanced iOS Page Transitions */
+        .page {
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            will-change: transform;
+        }
+        
+        /* iOS-style loading animation */
+        @keyframes ios-spinner {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .ios-loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-top: 2px solid var(--ios-blue);
+            border-radius: 50%;
+            animation: ios-spinner 1s linear infinite;
+        }
+        
+        /* iOS-style slider enhancement */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 2px;
+            background: linear-gradient(to right, var(--ios-blue) 0%, var(--ios-blue) 75%, #e5e5ea 75%, #e5e5ea 100%);
+            border-radius: 1px;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 28px;
+            height: 28px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            border: none;
+        }
+        
+        /* Enhanced list item interactions */
+        .list-item:active {
+            background-color: var(--ios-gray-2) !important;
+            transform: scale(0.99);
+            transition: all 0.1s ease;
+        }
+        
+        /* iOS-style alert and modal enhancements */
+        .alert-dialog {
+            border-radius: 14px !important;
+            overflow: hidden !important;
+        }
+        
+        .alert-dialog-title {
+            font-weight: 600 !important;
+            font-size: 17px !important;
+        }
+        
+        .alert-dialog-content {
+            font-size: 13px !important;
+            line-height: 1.4 !important;
+        }
+        
+        .alert-dialog-button {
+            font-size: 17px !important;
+            font-weight: 400 !important;
+        }
+        
+        .alert-dialog-button--primal {
+            font-weight: 600 !important;
+            color: var(--ios-blue) !important;
+        }
+        
+        /* iOS-style toast notifications */
+        .toast {
+            border-radius: 12px !important;
+            background: rgba(0, 0, 0, 0.85) !important;
+            color: white !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+        }
+        
+        /* iOS-style switch enhancements */
+        .switch__toggle {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        
+        .switch__handle {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        
+        /* Network signal strength indicator */
+        .signal-strength {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            margin-right: 8px;
+        }
+        
+        .signal-bar {
+            width: 3px;
+            background: #8e8e93;
+            border-radius: 1px;
+        }
+        
+        .signal-bar:nth-child(1) { height: 4px; }
+        .signal-bar:nth-child(2) { height: 6px; }
+        .signal-bar:nth-child(3) { height: 8px; }
+        .signal-bar:nth-child(4) { height: 10px; }
+        
+        .signal-strength.strong .signal-bar {
+            background: #34c759;
+        }
+        
+        .signal-strength.medium .signal-bar:nth-child(-n+3) {
+            background: #ff9500;
+        }
+        
+        .signal-strength.weak .signal-bar:nth-child(1) {
+            background: #ff3b30;
+        }
+        
+        /* Bluetooth device icons */
+        .device-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-right: 12px;
+        }
+        
+        .device-icon.airpods {
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+        }
+        
+        .device-icon.iphone {
+            background: linear-gradient(135deg, #1f1f1f, #000);
+            border-radius: 8px;
+        }
+        
+        .device-icon.macbook {
+            background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+            border-radius: 6px;
+        }
+        
+        /* Enhanced page background */
+        .page__content {
+            background: var(--ios-gray-1) !important;
+        }
+        
+        /* iOS-style section headers */
+        .section-header {
+            padding: 16px;
+            font-size: 14px;
+            color: #8e8e93;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
 <body>
@@ -543,6 +728,30 @@
         // Create detail page
         function createDetailPage(title) {
             const page = document.createElement('ons-page');
+            
+            // Create specific content based on the title
+            let pageContent = '';
+            
+            if (title === 'Wi-Fi') {
+                pageContent = createWiFiPage();
+            } else if (title === 'Bluetooth') {
+                pageContent = createBluetoothPage();
+            } else if (title === 'Cellular') {
+                pageContent = createCellularPage();
+            } else if (title === 'Notifications') {
+                pageContent = createNotificationsPage();
+            } else if (title === 'Sounds & Haptics') {
+                pageContent = createSoundsPage();
+            } else if (title === 'Display & Brightness') {
+                pageContent = createDisplayPage();
+            } else if (title === 'General') {
+                pageContent = createGeneralPage();
+            } else if (title === 'Privacy & Security') {
+                pageContent = createPrivacyPage();
+            } else {
+                pageContent = createGenericPage(title);
+            }
+            
             page.innerHTML = `
                 <ons-toolbar>
                     <div class="left">
@@ -551,38 +760,753 @@
                     <div class="center">${title}</div>
                 </ons-toolbar>
                 
-                <div class="page__content">
-                    <div style="padding: 20px; text-align: center; margin-top: 50px;">
-                        <div style="font-size: 48px; margin-bottom: 20px; opacity: 0.3;">
-                            <ons-icon icon="fa-cog"></ons-icon>
-                        </div>
-                        <h2 style="color: #8e8e93; font-weight: 400; margin: 0;">${title}</h2>
-                        <p style="color: #8e8e93; margin-top: 10px;">
-                            This is a demo of the ${title} settings page. 
-                            In a real app, this would contain the actual settings options.
-                        </p>
-                        
-                        <div style="margin-top: 40px;">
-                            <ons-list>
-                                <ons-list-item>
-                                    <div class="center">Enable ${title}</div>
-                                    <div class="right">
-                                        <ons-switch></ons-switch>
-                                    </div>
-                                </ons-list-item>
-                                
-                                <ons-list-item>
-                                    <div class="center">Auto ${title}</div>
-                                    <div class="right">
-                                        <ons-switch checked></ons-switch>
-                                    </div>
-                                </ons-list-item>
-                            </ons-list>
-                        </div>
-                    </div>
+                <div class="page__content" style="background-color: var(--ios-gray-1);">
+                    ${pageContent}
                 </div>
             `;
             return page;
+        }
+        
+        // Create Wi-Fi settings page
+        function createWiFiPage() {
+            return `
+                <div style="padding: 16px 0;">
+                    <!-- Wi-Fi Toggle -->
+                    <ons-list>
+                        <ons-list-item>
+                            <div class="center">Wi-Fi</div>
+                            <div class="right">
+                                <ons-switch checked id="wifiToggle" onchange="toggleWiFi(this)"></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Current Network -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showNetworkDetails('MyNetwork')">
+                            <div class="left">
+                                <ons-icon icon="fa-wifi" style="color: var(--ios-blue); font-size: 18px;"></ons-icon>
+                            </div>
+                            <div class="center">
+                                <div>MyNetwork</div>
+                                <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">Connected</div>
+                            </div>
+                            <div class="right">
+                                <ons-icon icon="fa-info-circle" style="color: var(--ios-blue); font-size: 18px;" onclick="showNetworkInfo('MyNetwork')"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Available Networks -->
+                    <div style="padding: 16px; font-size: 14px; color: #8e8e93; text-transform: uppercase; font-weight: 500;">
+                        Choose a Network...
+                    </div>
+                    
+                    <ons-list>
+                        <ons-list-item tappable onclick="connectToNetwork('Office_WiFi')">
+                            <div class="left">
+                                <ons-icon icon="fa-wifi" style="color: #8e8e93; font-size: 18px;"></ons-icon>
+                            </div>
+                            <div class="center">
+                                <div>Office_WiFi</div>
+                                <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">Secure</div>
+                            </div>
+                            <div class="right">
+                                <ons-icon icon="fa-lock" style="color: #8e8e93; font-size: 14px;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="connectToNetwork('Home_Network_5G')">
+                            <div class="left">
+                                <ons-icon icon="fa-wifi" style="color: #8e8e93; font-size: 18px;"></ons-icon>
+                            </div>
+                            <div class="center">Home_Network_5G</div>
+                            <div class="right">
+                                <ons-icon icon="fa-lock" style="color: #8e8e93; font-size: 14px;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="connectToNetwork('Guest_WiFi')">
+                            <div class="left">
+                                <ons-icon icon="fa-wifi" style="color: #8e8e93; font-size: 18px;"></ons-icon>
+                            </div>
+                            <div class="center">Guest_WiFi</div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Other Options -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showOtherOptions('Ask to Join Networks')">
+                            <div class="center">Ask to Join Networks</div>
+                            <div class="right">
+                                <ons-switch checked></ons-switch>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showOtherOptions('Auto-Join Hotspot')">
+                            <div class="center">Auto-Join Hotspot</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Ask to Join</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                </div>
+            `;
+        }
+        
+        // Create Bluetooth settings page
+        function createBluetoothPage() {
+            return `
+                <div style="padding: 16px 0;">
+                    <!-- Bluetooth Toggle -->
+                    <ons-list>
+                        <ons-list-item>
+                            <div class="center">Bluetooth</div>
+                            <div class="right">
+                                <ons-switch checked id="bluetoothToggle" onchange="toggleBluetooth(this)"></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- My Devices -->
+                    <div style="padding: 16px; font-size: 14px; color: #8e8e93; text-transform: uppercase; font-weight: 500;">
+                        My Devices
+                    </div>
+                    
+                    <ons-list>
+                        <ons-list-item tappable onclick="showDeviceDetails('AirPods Pro')">
+                            <div class="left">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #f0f0f0, #e0e0e0); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                                    🎧
+                                </div>
+                            </div>
+                            <div class="center">
+                                <div>AirPods Pro</div>
+                                <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">Connected</div>
+                            </div>
+                            <div class="right">
+                                <ons-icon icon="fa-info-circle" style="color: var(--ios-blue); font-size: 18px;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showDeviceDetails('iPhone')">
+                            <div class="left">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #1f1f1f, #000); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                    📱
+                                </div>
+                            </div>
+                            <div class="center">
+                                <div>iPhone</div>
+                                <div style="font-size: 14px; color: #34c759; margin-top: 2px;">This Device</div>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Other Devices -->
+                    <div style="padding: 16px; font-size: 14px; color: #8e8e93; text-transform: uppercase; font-weight: 500;">
+                        Other Devices
+                    </div>
+                    
+                    <ons-list>
+                        <ons-list-item tappable onclick="connectToDevice('MacBook Pro')">
+                            <div class="left">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #c0c0c0, #a0a0a0); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                    💻
+                                </div>
+                            </div>
+                            <div class="center">MacBook Pro</div>
+                            <div class="right">
+                                <span style="color: #8e8e93; font-size: 14px;">Not Connected</span>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="connectToDevice('Speaker')">
+                            <div class="left">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #2c2c2c, #1a1a1a); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                                    🔊
+                                </div>
+                            </div>
+                            <div class="center">Bluetooth Speaker</div>
+                            <div class="right">
+                                <span style="color: #8e8e93; font-size: 14px;">Not Connected</span>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                </div>
+            `;
+        }
+        
+        // Create Cellular settings page
+        function createCellularPage() {
+            return `
+                <div style="padding: 16px 0;">
+                    <!-- Cellular Data Toggle -->
+                    <ons-list>
+                        <ons-list-item>
+                            <div class="center">Cellular Data</div>
+                            <div class="right">
+                                <ons-switch checked id="cellularToggle" onchange="toggleCellular(this)"></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Current Period -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showDataUsage()">
+                            <div class="center">
+                                <div>Current Period</div>
+                                <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">2.5 GB used</div>
+                            </div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showRoamingOptions()">
+                            <div class="center">Data Roaming</div>
+                            <div class="right">
+                                <ons-switch></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Cellular Data Options -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showCellularOptions('Voice & Data')">
+                            <div class="center">Voice & Data</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">5G On</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showCellularOptions('Low Data Mode')">
+                            <div class="center">Low Data Mode</div>
+                            <div class="right">
+                                <ons-switch></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Apps Using Cellular Data -->
+                    <div style="padding: 16px; font-size: 14px; color: #8e8e93; text-transform: uppercase; font-weight: 500;">
+                        Apps Using Cellular Data
+                    </div>
+                    
+                    <ons-list>
+                        <ons-list-item>
+                            <div class="center">
+                                <div>Safari</div>
+                                <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">1.2 GB</div>
+                            </div>
+                            <div class="right">
+                                <ons-switch checked></ons-switch>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item>
+                            <div class="center">
+                                <div>Instagram</div>
+                                <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">856 MB</div>
+                            </div>
+                            <div class="right">
+                                <ons-switch checked></ons-switch>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item>
+                            <div class="center">
+                                <div>YouTube</div>
+                                <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">432 MB</div>
+                            </div>
+                            <div class="right">
+                                <ons-switch></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                </div>
+            `;
+        }
+        
+        // Create Display & Brightness page
+        function createDisplayPage() {
+            return `
+                <div style="padding: 16px 0;">
+                    <!-- Brightness Slider -->
+                    <ons-list>
+                        <ons-list-item>
+                            <div class="center" style="width: 100%;">
+                                <div style="display: flex; align-items: center; width: 100%;">
+                                    <ons-icon icon="fa-sun" style="color: #8e8e93; margin-right: 12px;"></ons-icon>
+                                    <input type="range" min="0" max="100" value="75" 
+                                           style="flex: 1; margin: 0 12px; height: 2px; background: #e5e5ea; border-radius: 1px; outline: none; -webkit-appearance: none;"
+                                           onchange="adjustBrightness(this.value)">
+                                    <ons-icon icon="fa-sun" style="color: #8e8e93; margin-left: 12px; font-size: 20px;"></ons-icon>
+                                </div>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Display Options -->
+                    <ons-list>
+                        <ons-list-item>
+                            <div class="center">Auto-Brightness</div>
+                            <div class="right">
+                                <ons-switch checked></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Appearance -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showAppearanceOptions()">
+                            <div class="center">Appearance</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Automatic</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Text Size -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showTextSizeOptions()">
+                            <div class="center">Text Size</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item>
+                            <div class="center">Bold Text</div>
+                            <div class="right">
+                                <ons-switch></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Auto-Lock -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showAutoLockOptions()">
+                            <div class="center">Auto-Lock</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">2 Minutes</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                </div>
+            `;
+        }
+        
+        // Create Notifications settings page
+        function createNotificationsPage() {
+            return `
+                <div style="padding: 16px 0;">
+                    <!-- Notification Style -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showNotificationStyle()">
+                            <div class="center">Notification Style</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Stack</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showScheduledSummary()">
+                            <div class="center">Scheduled Summary</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Off</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Siri Suggestions -->
+                    <ons-list>
+                        <ons-list-item>
+                            <div class="center">Siri Suggestions</div>
+                            <div class="right">
+                                <ons-switch checked></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Apps Notifications -->
+                    <div class="section-header">Notification Style</div>
+                    
+                    <ons-list>
+                        <ons-list-item tappable onclick="showAppNotifications('Messages')">
+                            <div class="left">
+                                <div style="width: 30px; height: 30px; background: #34c759; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px;">💬</div>
+                            </div>
+                            <div class="center">Messages</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Lock Screen, Notification Center, Banners</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showAppNotifications('Mail')">
+                            <div class="left">
+                                <div style="width: 30px; height: 30px; background: #007AFF; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px;">📧</div>
+                            </div>
+                            <div class="center">Mail</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Lock Screen, Notification Center</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showAppNotifications('Phone')">
+                            <div class="left">
+                                <div style="width: 30px; height: 30px; background: #34c759; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px;">📞</div>
+                            </div>
+                            <div class="center">Phone</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Lock Screen, Notification Center, Banners</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showAppNotifications('Instagram')">
+                            <div class="left">
+                                <div style="width: 30px; height: 30px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px;">📷</div>
+                            </div>
+                            <div class="center">Instagram</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Off</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                </div>
+            `;
+        }
+        
+        // Create Sounds & Haptics page
+        function createSoundsPage() {
+            return `
+                <div style="padding: 16px 0;">
+                    <!-- Ringer and Alerts -->
+                    <div class="section-header">Ringer and Alerts</div>
+                    
+                    <ons-list>
+                        <ons-list-item>
+                            <div class="center" style="width: 100%;">
+                                <div style="display: flex; align-items: center; width: 100%; margin: 8px 0;">
+                                    <ons-icon icon="fa-volume-down" style="color: #8e8e93; margin-right: 12px;"></ons-icon>
+                                    <input type="range" min="0" max="100" value="80" 
+                                           style="flex: 1; margin: 0 12px;"
+                                           onchange="adjustVolume(this.value, 'ringer')">
+                                    <ons-icon icon="fa-volume-up" style="color: #8e8e93; margin-left: 12px;"></ons-icon>
+                                </div>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item>
+                            <div class="center">Change with Buttons</div>
+                            <div class="right">
+                                <ons-switch checked></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Sounds and Vibration Patterns -->
+                    <div class="section-header">Sounds and Vibration Patterns</div>
+                    
+                    <ons-list>
+                        <ons-list-item tappable onclick="showSoundOptions('Ringtone')">
+                            <div class="center">Ringtone</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Reflection</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showSoundOptions('Text Tone')">
+                            <div class="center">Text Tone</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Note</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showSoundOptions('New Mail')">
+                            <div class="center">New Mail</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Ding</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showSoundOptions('Calendar Alerts')">
+                            <div class="center">Calendar Alerts</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Chord</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Keyboard Feedback -->
+                    <div class="section-header">Keyboard Feedback</div>
+                    
+                    <ons-list>
+                        <ons-list-item>
+                            <div class="center">Keyboard Clicks</div>
+                            <div class="right">
+                                <ons-switch checked></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- System Haptics -->
+                    <div class="section-header">System Haptics</div>
+                    
+                    <ons-list>
+                        <ons-list-item>
+                            <div class="center">System Haptics</div>
+                            <div class="right">
+                                <ons-switch checked></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                </div>
+            `;
+        }
+        
+        // Create General settings page
+        function createGeneralPage() {
+            return `
+                <div style="padding: 16px 0;">
+                    <!-- Device Info -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showAbout()">
+                            <div class="center">About</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showSoftwareUpdate()">
+                            <div class="center">Software Update</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showAirDrop()">
+                            <div class="center">AirDrop</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">Receiving Off</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showAirPlay()">
+                            <div class="center">AirPlay & Handoff</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Device Management -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showiPhoneStorage()">
+                            <div class="center">iPhone Storage</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showBackgroundRefresh()">
+                            <div class="center">Background App Refresh</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">On</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Accessibility -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showAccessibility()">
+                            <div class="center">Accessibility</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- International -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showLanguageRegion()">
+                            <div class="center">Language & Region</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showKeyboard()">
+                            <div class="center">Keyboard</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- System -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showDateTime()">
+                            <div class="center">Date & Time</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showShutdown()">
+                            <div class="center">Shut Down</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                </div>
+            `;
+        }
+        
+        // Create Privacy & Security page
+        function createPrivacyPage() {
+            return `
+                <div style="padding: 16px 0;">
+                    <!-- Privacy Report -->
+                    <ons-list>
+                        <ons-list-item tappable onclick="showPrivacyReport()">
+                            <div class="center">
+                                <div>Privacy Report</div>
+                                <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">View data & privacy activity</div>
+                            </div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- App Privacy -->
+                    <div class="section-header">Privacy</div>
+                    
+                    <ons-list>
+                        <ons-list-item tappable onclick="showLocationServices()">
+                            <div class="center">Location Services</div>
+                            <div class="right">
+                                <span style="color: #8e8e93;">On</span>
+                                <ons-icon icon="fa-chevron-right" style="margin-left: 8px; color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showContacts()">
+                            <div class="center">Contacts</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showCalendars()">
+                            <div class="center">Calendars</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showPhotos()">
+                            <div class="center">Photos</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showCamera()">
+                            <div class="center">Camera</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showMicrophone()">
+                            <div class="center">Microphone</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                    
+                    <!-- Security -->
+                    <div class="section-header">Security</div>
+                    
+                    <ons-list>
+                        <ons-list-item tappable onclick="showEmergencySOS()">
+                            <div class="center">Emergency SOS</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showAppPrivacyReport()">
+                            <div class="center">App Privacy Report</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showRecordingIndicator()">
+                            <div class="center">Recording Indicator</div>
+                            <div class="right">
+                                <ons-switch checked></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                </div>
+            `;
+        }
+        function createGenericPage(title) {
+            return `
+                <div style="padding: 40px 20px; text-align: center;">
+                    <div style="font-size: 64px; margin-bottom: 24px; opacity: 0.3;">
+                        ⚙️
+                    </div>
+                    <h2 style="color: #1c1c1e; font-weight: 600; margin: 0 0 12px; font-size: 24px;">${title}</h2>
+                    <p style="color: #8e8e93; margin: 0 0 40px; line-height: 1.4; font-size: 16px;">
+                        This is the ${title} settings page. 
+                        In a real app, this would contain specific options for ${title.toLowerCase()}.
+                    </p>
+                    
+                    <ons-list>
+                        <ons-list-item>
+                            <div class="center">Enable ${title}</div>
+                            <div class="right">
+                                <ons-switch checked></ons-switch>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item tappable onclick="showSubOption('${title} Options')">
+                            <div class="center">${title} Options</div>
+                            <div class="right">
+                                <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                            </div>
+                        </ons-list-item>
+                        
+                        <ons-list-item>
+                            <div class="center">Auto ${title}</div>
+                            <div class="right">
+                                <ons-switch></ons-switch>
+                            </div>
+                        </ons-list-item>
+                    </ons-list>
+                </div>
+            `;
         }
         
         // Create profile page
@@ -664,7 +1588,630 @@
             return page;
         }
         
-        // Register service worker for PWA
+        // Additional interactive functions for realistic iOS experience
+        function toggleWiFi(switchEl) {
+            if (navigator.vibrate) navigator.vibrate(15);
+            
+            if (switchEl.checked) {
+                ons.notification.toast('Wi-Fi enabled. Searching for networks...', { 
+                    timeout: 2000,
+                    modifier: 'ios'
+                });
+            } else {
+                ons.notification.toast('Wi-Fi disabled', { 
+                    timeout: 2000,
+                    modifier: 'ios'
+                });
+            }
+        }
+        
+        function toggleBluetooth(switchEl) {
+            if (navigator.vibrate) navigator.vibrate(15);
+            
+            if (switchEl.checked) {
+                ons.notification.toast('Bluetooth enabled. Searching for devices...', { 
+                    timeout: 2000,
+                    modifier: 'ios'
+                });
+            } else {
+                ons.notification.toast('Bluetooth disabled', { 
+                    timeout: 2000,
+                    modifier: 'ios'
+                });
+            }
+        }
+        
+        function toggleCellular(switchEl) {
+            if (navigator.vibrate) navigator.vibrate(15);
+            
+            if (switchEl.checked) {
+                ons.notification.toast('Cellular data enabled', { 
+                    timeout: 2000,
+                    modifier: 'ios'
+                });
+            } else {
+                ons.notification.toast('Cellular data disabled', { 
+                    timeout: 2000,
+                    modifier: 'ios'
+                });
+            }
+        }
+        
+        function connectToNetwork(networkName) {
+            if (navigator.vibrate) navigator.vibrate(10);
+            
+            // Show iOS-style alert for password
+            ons.notification.prompt(`Enter password for "${networkName}"`, {
+                title: 'Enter Password',
+                inputType: 'password',
+                placeholder: 'Password',
+                submitText: 'Join',
+                cancelText: 'Cancel',
+                modifier: 'ios'
+            }).then(function(password) {
+                if (password !== null && password !== '') {
+                    // Simulate connection process
+                    showConnectingAnimation(networkName);
+                }
+            });
+        }
+        
+        function showConnectingAnimation(networkName) {
+            const toast = ons.notification.toast(`Connecting to ${networkName}...`, { 
+                timeout: 3000,
+                modifier: 'ios'
+            });
+            
+            setTimeout(() => {
+                ons.notification.toast(`Connected to ${networkName}`, { 
+                    timeout: 2000,
+                    modifier: 'ios'
+                });
+            }, 2000);
+        }
+        
+        function connectToDevice(deviceName) {
+            if (navigator.vibrate) navigator.vibrate(10);
+            
+            ons.notification.confirm(`Connect to ${deviceName}?`, {
+                title: 'Bluetooth',
+                buttonLabels: ['Cancel', 'Connect'],
+                modifier: 'ios'
+            }).then(function(buttonIndex) {
+                if (buttonIndex === 1) {
+                    ons.notification.toast(`Connecting to ${deviceName}...`, { 
+                        timeout: 2000,
+                        modifier: 'ios'
+                    });
+                }
+            });
+        }
+        
+        function showNetworkDetails(networkName) {
+            // Create network details page
+            const detailPage = document.createElement('ons-page');
+            detailPage.innerHTML = `
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-back-button>Wi-Fi</ons-back-button>
+                    </div>
+                    <div class="center">${networkName}</div>
+                </ons-toolbar>
+                
+                <div class="page__content" style="background-color: var(--ios-gray-1);">
+                    <div style="padding: 16px 0;">
+                        <!-- Network Status -->
+                        <ons-list>
+                            <ons-list-item>
+                                <div class="center">
+                                    <div style="text-align: center; padding: 20px;">
+                                        <div style="font-size: 48px; margin-bottom: 16px;">📶</div>
+                                        <h3 style="margin: 0; color: #1c1c1e;">${networkName}</h3>
+                                        <p style="margin: 8px 0 0; color: #34c759; font-size: 14px;">✓ Connected</p>
+                                    </div>
+                                </div>
+                            </ons-list-item>
+                        </ons-list>
+                        
+                        <!-- Network Options -->
+                        <ons-list>
+                            <ons-list-item>
+                                <div class="center">Auto-Join</div>
+                                <div class="right">
+                                    <ons-switch checked></ons-switch>
+                                </div>
+                            </ons-list-item>
+                            
+                            <ons-list-item tappable onclick="forgetNetwork('${networkName}')">
+                                <div class="center" style="color: var(--ios-red);">Forget This Network</div>
+                            </ons-list-item>
+                        </ons-list>
+                        
+                        <!-- Network Info -->
+                        <ons-list>
+                            <ons-list-item>
+                                <div class="center">
+                                    <div>IP Address</div>
+                                    <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">192.168.1.100</div>
+                                </div>
+                            </ons-list-item>
+                            
+                            <ons-list-item>
+                                <div class="center">
+                                    <div>Security</div>
+                                    <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">WPA2 Personal</div>
+                                </div>
+                            </ons-list-item>
+                        </ons-list>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('navigator').pushPage(detailPage, {
+                animation: 'slide-ios'
+            });
+        }
+        
+        function forgetNetwork(networkName) {
+            ons.notification.confirm(`Forget "${networkName}"?`, {
+                title: 'Forget Network',
+                message: 'Your iPhone will no longer join this Wi-Fi network.',
+                buttonLabels: ['Cancel', 'Forget'],
+                modifier: 'ios'
+            }).then(function(buttonIndex) {
+                if (buttonIndex === 1) {
+                    ons.notification.toast(`Forgot ${networkName}`, { 
+                        timeout: 2000,
+                        modifier: 'ios'
+                    });
+                    
+                    // Go back to Wi-Fi page
+                    setTimeout(() => {
+                        document.getElementById('navigator').popPage();
+                    }, 500);
+                }
+            });
+        }
+        
+        function adjustBrightness(value) {
+            if (navigator.vibrate) navigator.vibrate(5);
+            
+            // Simulate brightness change by adjusting page opacity slightly
+            const content = document.querySelector('.page__content');
+            const brightness = 0.7 + (value / 100) * 0.3; // Range from 0.7 to 1.0
+            content.style.filter = `brightness(${brightness})`;
+            
+            // Show brightness indicator
+            showBrightnessIndicator(value);
+        }
+        
+        function showBrightnessIndicator(value) {
+            // Remove existing indicator
+            const existing = document.querySelector('.brightness-indicator');
+            if (existing) existing.remove();
+            
+            // Create brightness indicator
+            const indicator = document.createElement('div');
+            indicator.className = 'brightness-indicator';
+            indicator.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 20px;
+                border-radius: 12px;
+                z-index: 10000;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-width: 120px;
+                pointer-events: none;
+            `;
+            
+            // Create brightness bars
+            let bars = '';
+            const numBars = 16;
+            const activeBars = Math.round((value / 100) * numBars);
+            
+            for (let i = 0; i < numBars; i++) {
+                const isActive = i < activeBars;
+                bars += `<div style="
+                    width: 4px;
+                    height: 8px;
+                    background: ${isActive ? 'white' : 'rgba(255,255,255,0.3)'};
+                    margin: 1px;
+                    border-radius: 2px;
+                "></div>`;
+            }
+            
+            indicator.innerHTML = `
+                <div style="font-size: 24px; margin-bottom: 12px;">☀️</div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    ${bars}
+                </div>
+            `;
+            
+            document.body.appendChild(indicator);
+            
+            // Auto remove after delay
+            setTimeout(() => {
+                if (indicator.parentNode) {
+                    indicator.style.opacity = '0';
+                    setTimeout(() => {
+                        if (indicator.parentNode) {
+                            indicator.parentNode.removeChild(indicator);
+                        }
+                    }, 300);
+                }
+            }, 1000);
+        }
+        
+        function showSubOption(optionName) {
+            if (navigator.vibrate) navigator.vibrate(10);
+            ons.notification.toast(`Opening ${optionName}...`, { 
+                timeout: 1500,
+                modifier: 'ios'
+            });
+        }
+        
+        // Additional functions for new pages
+        function adjustVolume(value, type) {
+            if (navigator.vibrate) navigator.vibrate(5);
+            
+            // Show volume indicator similar to iOS
+            showVolumeIndicator(value, type);
+        }
+        
+        function showVolumeIndicator(value, type) {
+            const existing = document.querySelector('.volume-indicator');
+            if (existing) existing.remove();
+            
+            const indicator = document.createElement('div');
+            indicator.className = 'volume-indicator';
+            indicator.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 20px;
+                border-radius: 12px;
+                z-index: 10000;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-width: 120px;
+                pointer-events: none;
+            `;
+            
+            const icon = type === 'ringer' ? '🔊' : '🎵';
+            let bars = '';
+            const numBars = 16;
+            const activeBars = Math.round((value / 100) * numBars);
+            
+            for (let i = 0; i < numBars; i++) {
+                const isActive = i < activeBars;
+                bars += `<div style="
+                    width: 4px;
+                    height: 8px;
+                    background: ${isActive ? 'white' : 'rgba(255,255,255,0.3)'};
+                    margin: 1px;
+                    border-radius: 2px;
+                "></div>`;
+            }
+            
+            indicator.innerHTML = `
+                <div style="font-size: 24px; margin-bottom: 12px;">${icon}</div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    ${bars}
+                </div>
+            `;
+            
+            document.body.appendChild(indicator);
+            
+            setTimeout(() => {
+                if (indicator.parentNode) {
+                    indicator.style.opacity = '0';
+                    setTimeout(() => {
+                        if (indicator.parentNode) {
+                            indicator.parentNode.removeChild(indicator);
+                        }
+                    }, 300);
+                }
+            }, 1000);
+        }
+        
+        function showSoundOptions(soundType) {
+            if (navigator.vibrate) navigator.vibrate(10);
+            
+            const sounds = {
+                'Ringtone': ['Reflection', 'Apex', 'Beacon', 'Circuit', 'Constellation', 'Cosmic', 'Hillside', 'Illuminate', 'Radiate', 'Ripples', 'Sencha', 'Signal', 'Silk', 'Slow Rise', 'Stargaze', 'Summit', 'Twinkle', 'Uplift'],
+                'Text Tone': ['Note', 'Alert', 'Bamboo', 'Chord', 'Circles', 'Complete', 'Hello', 'Horn', 'Ladder', 'News Flash', 'Noir', 'Sherwood Forest', 'Spell', 'Suspense', 'Telegraph', 'Tiptoes', 'Typewriters', 'Update'],
+                'New Mail': ['Ding', 'Bloom', 'Chime', 'Fresh Air', 'Mailbox', 'Synth'],
+                'Calendar Alerts': ['Chord', 'Alarm', 'Anticipate', 'Bell', 'Bloom', 'Calypso', 'Chime', 'Choo Choo', 'Descent', 'Fanfare', 'Ladder']
+            };
+            
+            const soundList = sounds[soundType] || ['Default'];
+            
+            ons.notification.actionSheet({
+                title: `Choose ${soundType}`,
+                buttons: soundList.concat(['Cancel']),
+                cancelable: true,
+                modifier: 'ios'
+            }).then(function(index) {
+                if (index >= 0 && index < soundList.length) {
+                    enhancedHaptic('light');
+                    ons.notification.toast(`${soundType} set to "${soundList[index]}"`, { 
+                        timeout: 2000,
+                        modifier: 'ios'
+                    });
+                }
+            });
+        }
+        
+        function showAppNotifications(appName) {
+            if (navigator.vibrate) navigator.vibrate(10);
+            
+            const appPage = document.createElement('ons-page');
+            appPage.innerHTML = `
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-back-button>Notifications</ons-back-button>
+                    </div>
+                    <div class="center">${appName}</div>
+                </ons-toolbar>
+                
+                <div class="page__content" style="background-color: var(--ios-gray-1);">
+                    <div style="padding: 16px 0;">
+                        <!-- Allow Notifications -->
+                        <ons-list>
+                            <ons-list-item>
+                                <div class="center">Allow Notifications</div>
+                                <div class="right">
+                                    <ons-switch ${appName !== 'Instagram' ? 'checked' : ''}></ons-switch>
+                                </div>
+                            </ons-list-item>
+                        </ons-list>
+                        
+                        <!-- Alert Style -->
+                        <div class="section-header">Alerts</div>
+                        
+                        <ons-list>
+                            <ons-list-item>
+                                <div class="center">Lock Screen</div>
+                                <div class="right">
+                                    <ons-switch ${appName !== 'Instagram' ? 'checked' : ''}></ons-switch>
+                                </div>
+                            </ons-list-item>
+                            
+                            <ons-list-item>
+                                <div class="center">Notification Center</div>
+                                <div class="right">
+                                    <ons-switch ${appName !== 'Instagram' ? 'checked' : ''}></ons-switch>
+                                </div>
+                            </ons-list-item>
+                            
+                            <ons-list-item>
+                                <div class="center">Banners</div>
+                                <div class="right">
+                                    <ons-switch ${appName === 'Messages' || appName === 'Phone' ? 'checked' : ''}></ons-switch>
+                                </div>
+                            </ons-list-item>
+                        </ons-list>
+                        
+                        <!-- Options -->
+                        <ons-list>
+                            <ons-list-item>
+                                <div class="center">Sounds</div>
+                                <div class="right">
+                                    <ons-switch checked></ons-switch>
+                                </div>
+                            </ons-list-item>
+                            
+                            <ons-list-item>
+                                <div class="center">Badges</div>
+                                <div class="right">
+                                    <ons-switch checked></ons-switch>
+                                </div>
+                            </ons-list-item>
+                        </ons-list>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('navigator').pushPage(appPage, {
+                animation: 'slide-ios'
+            });
+        }
+        
+        function showAbout() {
+            if (navigator.vibrate) navigator.vibrate(10);
+            
+            const aboutPage = document.createElement('ons-page');
+            aboutPage.innerHTML = `
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-back-button>General</ons-back-button>
+                    </div>
+                    <div class="center">About</div>
+                </ons-toolbar>
+                
+                <div class="page__content" style="background-color: var(--ios-gray-1);">
+                    <div style="padding: 16px 0;">
+                        <ons-list>
+                            <ons-list-item>
+                                <div class="center">
+                                    <div>Name</div>
+                                    <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">iPhone</div>
+                                </div>
+                            </ons-list-item>
+                            
+                            <ons-list-item>
+                                <div class="center">
+                                    <div>Software Version</div>
+                                    <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">iOS 17.0</div>
+                                </div>
+                            </ons-list-item>
+                            
+                            <ons-list-item>
+                                <div class="center">
+                                    <div>Model Name</div>
+                                    <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">iPhone 15 Pro</div>
+                                </div>
+                            </ons-list-item>
+                            
+                            <ons-list-item>
+                                <div class="center">
+                                    <div>Model Number</div>
+                                    <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">A3108</div>
+                                </div>
+                            </ons-list-item>
+                            
+                            <ons-list-item>
+                                <div class="center">
+                                    <div>Serial Number</div>
+                                    <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">F2LLD2ABC123</div>
+                                </div>
+                            </ons-list-item>
+                        </ons-list>
+                        
+                        <ons-list>
+                            <ons-list-item tappable onclick="showCertificates()">
+                                <div class="center">Certificate Trust Settings</div>
+                                <div class="right">
+                                    <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                                </div>
+                            </ons-list-item>
+                        </ons-list>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('navigator').pushPage(aboutPage, {
+                animation: 'slide-ios'
+            });
+        }
+        
+        function showiPhoneStorage() {
+            if (navigator.vibrate) navigator.vibrate(10);
+            
+            const storagePage = document.createElement('ons-page');
+            storagePage.innerHTML = `
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-back-button>General</ons-back-button>
+                    </div>
+                    <div class="center">iPhone Storage</div>
+                </ons-toolbar>
+                
+                <div class="page__content" style="background-color: var(--ios-gray-1);">
+                    <div style="padding: 16px 0;">
+                        <!-- Storage Bar -->
+                        <ons-list>
+                            <ons-list-item>
+                                <div class="center" style="width: 100%;">
+                                    <div style="text-align: center; padding: 20px;">
+                                        <div style="font-size: 48px; margin-bottom: 16px;">📱</div>
+                                        <div style="width: 100%; height: 8px; background: #e5e5ea; border-radius: 4px; margin: 16px 0; position: relative; overflow: hidden;">
+                                            <div style="position: absolute; left: 0; top: 0; height: 100%; width: 45%; background: #ff9500; border-radius: 4px;"></div>
+                                            <div style="position: absolute; left: 45%; top: 0; height: 100%; width: 20%; background: #007AFF; border-radius: 4px;"></div>
+                                            <div style="position: absolute; left: 65%; top: 0; height: 100%; width: 15%; background: #34c759; border-radius: 4px;"></div>
+                                        </div>
+                                        <p style="margin: 0; color: #8e8e93; font-size: 14px;">57.2 GB of 128 GB used</p>
+                                    </div>
+                                </div>
+                            </ons-list-item>
+                        </ons-list>
+                        
+                        <!-- App Storage -->
+                        <ons-list>
+                            <ons-list-item tappable onclick="showAppStorage('Photos')">
+                                <div class="left">
+                                    <div style="width: 30px; height: 30px; background: linear-gradient(135deg, #ff6b6b, #ee5a24); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px;">📷</div>
+                                </div>
+                                <div class="center">
+                                    <div>Photos</div>
+                                    <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">23.4 GB</div>
+                                </div>
+                                <div class="right">
+                                    <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                                </div>
+                            </ons-list-item>
+                            
+                            <ons-list-item tappable onclick="showAppStorage('System Data')">
+                                <div class="left">
+                                    <div style="width: 30px; height: 30px; background: #8e8e93; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px;">⚙️</div>
+                                </div>
+                                <div class="center">
+                                    <div>System Data</div>
+                                    <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">18.2 GB</div>
+                                </div>
+                                <div class="right">
+                                    <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                                </div>
+                            </ons-list-item>
+                            
+                            <ons-list-item tappable onclick="showAppStorage('Apps')">
+                                <div class="left">
+                                    <div style="width: 30px; height: 30px; background: #007AFF; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px;">📱</div>
+                                </div>
+                                <div class="center">
+                                    <div>Apps</div>
+                                    <div style="font-size: 14px; color: #8e8e93; margin-top: 2px;">15.6 GB</div>
+                                </div>
+                                <div class="right">
+                                    <ons-icon icon="fa-chevron-right" style="color: #c7c7cc;"></ons-icon>
+                                </div>
+                            </ons-list-item>
+                        </ons-list>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('navigator').pushPage(storagePage, {
+                animation: 'slide-ios'
+            });
+        }
+        
+        // Placeholder functions for other settings
+        function showSoftwareUpdate() {
+            enhancedHaptic('light');
+            ons.notification.toast('Checking for updates...', { timeout: 2000, modifier: 'ios' });
+        }
+        
+        function showPrivacyReport() {
+            enhancedHaptic('light');
+            ons.notification.toast('Loading Privacy Report...', { timeout: 2000, modifier: 'ios' });
+        }
+        
+        function showLocationServices() {
+            enhancedHaptic('light');
+            ons.notification.toast('Opening Location Services...', { timeout: 2000, modifier: 'ios' });
+        }
+        function enhancedHaptic(type = 'light') {
+            if (!navigator.vibrate) return;
+            
+            switch(type) {
+                case 'light':
+                    navigator.vibrate(10);
+                    break;
+                case 'medium':
+                    navigator.vibrate(20);
+                    break;
+                case 'heavy':
+                    navigator.vibrate([25, 10, 25]);
+                    break;
+                case 'success':
+                    navigator.vibrate([10, 5, 10]);
+                    break;
+                case 'error':
+                    navigator.vibrate([50, 20, 50, 20, 50]);
+                    break;
+            }
+        }
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('service-worker.js')
